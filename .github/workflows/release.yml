@@ -1,10 +1,10 @@
 # =============================================================================
-# Publish Workflow — artty
+# Release Workflow — artty
 # =============================================================================
 # Triggered on GitHub Release (published type)
 # Builds sdist and wheel, publishes to PyPI via trusted publishing
 
-name: Publish
+name: Release
 
 on:
   release:
@@ -48,7 +48,7 @@ jobs:
       name: pypi
       url: https://pypi.org/p/artty
     permissions:
-      id-token: write  # Required for OIDC trusted publishing
+      id-token: write # Required for OIDC trusted publishing
     steps:
       - name: Download artifacts
         uses: actions/download-artifact@v4
