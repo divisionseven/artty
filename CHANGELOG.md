@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Shell completions for bash, zsh, and fish (`completions/`)
+- FAQ documentation (`docs/faq.md`)
+- Man page (`man/artty.1`)
+- Documentation links to `--help` output
+
+### Fixed
+- Hardcoded path in test_main.py — now uses dynamic path resolution
+- SECURITY.md version table to reflect 0.1.x releases
+- Various lint issues (unused imports, type annotations, duplicate tests)
+
+### Changed
+- Badge styles to black background, white logos, plastic style
+- Dynamic version in `__init__.py` using `importlib.metadata`
+
 ## [0.1.1] - 2026-04-13
 
 ### Added

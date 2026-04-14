@@ -293,7 +293,10 @@ def _custom_format_help(
 # This will be applied after the main function is defined
 
 
-@click.command(context_settings={"help_option_names": ["-h", "--help"]})
+@click.command(
+    context_settings={"help_option_names": ["-h", "--help"]},
+    epilog="Full documentation: https://github.com/divisionseven/artty#readme\nReport bugs: https://github.com/divisionseven/artty/issues",
+)
 @click.argument("input", type=click.Path(exists=True), required=True)
 @click.option(
     "-o",

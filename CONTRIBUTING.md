@@ -162,6 +162,79 @@ Then open a Pull Request on GitHub with:
 - **Line length**: Maximum 88 characters (ruff default)
 - **Imports**: Organize as Standard library → Third-party → Local, alphabetically within groups
 
+## Shell Completions
+
+Shell completions are provided in the `completions/` directory for Bash, Zsh, and Fish shells.
+
+### Bash
+
+**Option 1: User-level (recommended)**
+
+```bash
+# Create completions directory and source in .bashrc
+mkdir -p ~/.bash_completion.d
+cp completions/artty.bash ~/.bash_completion.d/artty
+
+# Add to .bashrc
+echo 'source ~/.bash_completion.d/artty' >> ~/.bashrc
+```
+
+**Option 2: System-wide**
+
+```bash
+sudo cp completions/artty.bash /etc/bash_completion.d/
+```
+
+### Zsh
+
+**Option 1: Using a directory (recommended)**
+
+```bash
+# Create completions directory
+mkdir -p ~/.zsh/completions
+
+# Copy (note: rename to _artty with underscore prefix)
+cp completions/artty.zsh ~/.zsh/completions/_artty
+
+# Add to .zshrc (before compinit)
+echo 'fpath=(~/.zsh/completions $fpath)' >> ~/.zshrc
+echo 'autoload -U compinit && compinit' >> ~/.zshrc
+```
+
+**Option 2: Source directly**
+
+```bash
+# Add to .zshrc
+source /path/to/artty/completions/artty.zsh
+```
+
+### Fish
+
+```bash
+# Copy completion file to Fish config directory
+cp completions/artty.fish ~/.config/fish/completions/artty.fish
+
+# Or create a symlink (useful for development)
+ln -s (pwd)/completions/artty.fish ~/.config/fish/completions/artty.fish
+```
+
+### Verifying Installation
+
+After installing, restart your shell or source your RC file, then test:
+
+```bash
+artty <TAB>     # Should show options
+artty --<TAB>   # Should show options
+```
+
+### Development Notes
+
+- The completion files are included in the Python package distribution via `pyproject.toml`
+- When modifying the CLI, update the completion files to match any new options
+- Bash completions use the traditional completion API
+- Zsh completions use the `compdef` system
+- Fish completions use the native `complete` command
+
 ## Questions?
 
 If you have questions, feel free to open an issue for discussion before starting work.

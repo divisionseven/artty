@@ -1,0 +1,158 @@
+.\" Man page for artty
+.\" 
+.\" This man page follows the standard UNIX man page format.
+.\" Sections: NAME, SYNOPSIS, DESCRIPTION, OPTIONS, EXAMPLES, 
+.\" ENVIRONMENT, FILES, EXIT STATUS, SEE ALSO, AUTHOR, COPYRIGHT
+.\"
+.TH ARTTY "1" "April 2026" "artty 0.1.1" "User Commands"
+.SH NAME
+\fBartty\fR \- Convert images to detailed braille ASCII art
+.SH SYNOPSIS
+.B artty \fIINPUT\fR [\fB\-o\fR|\fB\-\-output\fR \fIFILE\fR] [\fB\-\-preview\fR|\fB\-\-no\-preview\fR]
+[\fB\-\-no\-save\fR] [\fB\-w\fR|\fB\-\-width\fR \fIN\fR] [\fB\-t\fR|\fB\-\-threshold\fR \fIN\fR]
+[\fB\-\-padding\fR \fIN\fR] [\fB\-\-contrast\fR \fIFLOAT\fR] [\fB\-\-sharpness\fR \fIFLOAT\fR]
+[\fB\-\-color\fR|\fB\-\-no\-color\fR] [\fB\-\-boost\fR \fIFLOAT\fR] [\fB\-\-bg\fR \fIR\fR \fIG\fR \fIB\fR]
+[\fB\-\-hide\-paths\fR] [\fB\-v\fR|\fB\-\-version\fR] [\fB\-h\fR|\fB\-\-help\fR]
+.SH DESCRIPTION
+\fBartty\fR is a CLI tool that converts images to detailed braille ASCII art with
+accurate color embedding or plain text output. It uses Unicode braille
+characters to represent image detail, outputting either 24\-bit ANSI color
+sequences or plain text.
+.PP
+The tool reads an input image and converts it to a text representation using
+Unicode braille patterns (U+2800 to U+28FF). Each braille cell represents
+a 2x3 pixel block, with the dots within the cell representing which pixels
+are above the luminance threshold.
+.PP
+When color mode is enabled (\fB\-\-color\fR), the output includes ANSI escape
+codes that set the foreground color for each braille cell, producing a colored
+pixel\-accurate representation in terminals that support 24\-bit color.
+.SH OPTIONS
+.SS "Input and Output"
+.TP
+\fBINPUT\fR
+Path to the input image file (required). Supported formats include PNG,
+JPEG, GIF, BMP, TIFF, and WebP.
+.TP
+\fB\-o\fR \fIFILE\fR\fB, \-\-output\fR=\fIFILE\fR
+Where to save the output .txt file. Accepts a full file path or a directory.
+If a directory is given, the filename is derived from the input image name.
+Defaults to the same directory as the input image.
+.TP
+\fB\-\-preview\fR|\fB\-\-no\-preview\fR
+Print (or suppress) the result to the terminal after saving.
+Default is \fB\-\-preview\fR (enabled).
+.TP
+\fB\-\-no\-save\fR
+Do not write a .txt file; only print to stdout. Useful for piping or
+previewing without saving.
+.TP
+\fB\-\-hide\-paths\fR
+Show only filenames in output messages, hiding full paths.
+.SS "Dimensions"
+.TP
+\fB\-w\fR \fIN\fR\fB, \-\-width\fR=\fIN\fR
+Output width in braille characters. Height is auto\-calculated based
+on the image aspect ratio. Valid range: 10 to 500. Default is 100.
+.TP
+\fB\-t\fR \fIN\fR\fB, \-\-threshold\fR=\fIN\fR
+Luminance threshold (0\-255). Pixels brighter than this become raised
+braille dots; darker pixels become empty dots. Lower values produce
+denser output; higher values produce sparser output. Default is 50.
+.TP
+\fB\-\-padding\fR \fIN\fR
+Pixels of padding around auto\-detected content. Used when cropping the
+input image to focus on the main subject. Default is 30.
+.SS "Image Processing"
+.TP
+\fB\-\-contrast\fR \fIFLOAT\fR
+Contrast enhancement factor. A value of 1.0 leaves contrast unchanged;
+values greater than 1.0 increase contrast, values less than 1.0 decrease
+it. Default is 1.0.
+.TP
+\fB\-\-sharpness\fR \fIFLOAT\fR
+Sharpness enhancement factor. A value of 1.0 leaves sharpness unchanged;
+values greater than 1.0 increase sharpness, values less than 1.0 decrease
+it. Default is 1.0.
+.SS "Color Options"
+.TP
+\fB\-\-color\fR|\fB\-\-no\-color\fR
+Enable or disable 24\-bit ANSI color output. When enabled, each
+braille cell is colored to match the average color of the pixels
+it represents. Default is \fB\-\-color\fR (enabled).
+.TP
+\fB\-\-boost\fR \fIFLOAT\fR
+Color brightness multiplier for better visibility on terminals.
+Typical values range from 1.0 to 1.4. Default is 1.2.
+.TP
+\fB\-\-bg\fR \fIR\fR \fIG\fR \fIB\fR
+Add a solid ANSI background color. Specify three integers (0\-255)
+representing the red, green, and blue components. For example,
+\fB\-\-bg 0 0 0\fR produces a black background.
+.SS "Help and Version"
+.TP
+\fB\-v\fR, \-\-version\fR
+Show the version number and exit.
+.TP
+\fB\-h\fR, \-\-help\fR
+Show the help message and exit.
+.SH EXAMPLES
+.TP
+Basic conversion:
+.B artty
+logo.png
+.TP
+Convert with custom width and no color:
+.B artty
+logo.png \-\-no\-color \-\-width 80
+.TP
+Save to a specific location:
+.B artty
+photo.jpg \-o ~/Desktop/output.txt \-w 120
+.TP
+Increase threshold for sparser output:
+.B artty
+image.png \-\-threshold 128 \-\-width 60
+.TP
+Add black background and high contrast:
+.B artty
+screenshot.png \-\-bg 0 0 0 \-\-contrast 1.5
+.TP
+Pipe output to another program (no save):
+.B artty
+input.png \-\-no\-save | less \-R
+.SH ENVIRONMENT
+\fBartty\fR does not use any environment variables. Configuration is
+handled entirely via command\-line options.
+.SH FILES
+\fBartty\fR does not require any configuration files. Output files are
+created only when explicitly specified via the \fB\-\-output\fR option
+or when the default behavior writes to the input directory.
+.SH EXIT STATUS
+.TP
+0
+Success. The image was converted and optionally saved.
+.TP
+1
+Error. An error occurred during conversion, such as:
+.RS
+.IP \(bu 2
+Invalid input file or file not found
+.IP \(bu 2
+Unsupported image format
+.IP \(bu 2
+Invalid option values (e.g., negative contrast)
+.IP \(bu 2
+Permission denied when writing output file
+.RE
+.SH SEE ALSO
+.TP
+Full documentation:
+.I https://github.com/divisionseven/artty#readme
+.TP
+Issue tracker:
+.I https://github.com/divisionseven/artty/issues
+.SH AUTHOR
+Written by divisionseven.
+.SH COPYRIGHT
+Copyright \(co 2026 divisionseven. MIT License.
