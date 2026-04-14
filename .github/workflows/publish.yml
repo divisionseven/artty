@@ -1,0 +1,61 @@
+# =============================================================================
+# Publish Workflow — artty
+# =============================================================================
+# Triggered on GitHub Release (published type)
+# Builds sdist and wheel, publishes to PyPI via trusted publishing
+
+name: Publish
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install build
+        run: pip install build
+
+      - name: Build sdist and wheel
+        run: python -m build
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    # Publish to PyPI using trusted publishing (no API token required)
+    # Requires a PyPI publisher to be configured in the project settings
+    environment:
+      name: pypi
+      url: https://pypi.org/p/artty
+    permissions:
+      id-token: write  # Required for OIDC trusted publishing
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        # No password needed when using trusted publishing with id-token

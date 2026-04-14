@@ -1,0 +1,79 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "artty"
+version = "0.1.1"
+description = "Convert images to braille ASCII art with color or plain output — a terminal art tool"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [
+    { name = "divisionseven", email = "divisionseven@users.noreply.github.com" },
+]
+maintainers = [
+    { name = "divisionseven", email = "divisionseven@users.noreply.github.com" },
+]
+keywords = ["ascii", "art", "braille", "image", "conversion", "cli"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: End Users/Desktop",
+    "Topic :: Multimedia :: Graphics :: Graphics Conversion",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+]
+
+dependencies = ["Pillow>=10.0", "click>=8.0"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "pytest-cov>=4.0", "ruff>=0.3", "mypy>=1.0"]
+
+[project.scripts]
+artty = "artty.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src.artty"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = ["--strict-markers", "-ra"]
+
+[tool.coverage.run]
+branch = true
+source = ["src"]
+omit = ["*/__init__.py"]
+
+[tool.coverage.report]
+fail_under = 86
+show_missing = true
+skip_covered = false
+
+[tool.ruff]
+target-version = "py310"
+line-length = 88
+src = ["src"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = false
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
+check_untyped_defs = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+show_error_codes = true
+show_column_numbers = true
+show_error_context = true
+pretty = true
+exclude = ["tests"]
