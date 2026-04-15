@@ -16,7 +16,7 @@ import os
 import sys
 import time
 import types
-from typing import Any, Optional
+from typing import Any
 
 import click
 
@@ -84,8 +84,8 @@ def _format_path(path: str, hide: bool) -> str:
 
 
 def resolve_output_path(
-    input_path: str, output: Optional[str], width: int, color: bool
-) -> Optional[str]:
+    input_path: str, output: str | None, width: int, color: bool
+) -> str | None:
     """
     Resolve the output file path based on input and CLI options.
 
@@ -295,7 +295,7 @@ def _custom_format_help(
     context_settings={"help_option_names": ["-h", "--help"]},
     epilog="Full documentation: https://github.com/divisionseven/artty#readme\nReport bugs: https://github.com/divisionseven/artty/issues",
 )
-@click.argument("input", type=click.Path(exists=True), required=False)
+@click.argument("input", type=click.Path(exists=True), required=True)
 @click.option(
     "-o",
     "--output",
@@ -384,7 +384,7 @@ def _custom_format_help(
 def main(
     ctx: click.Context,
     input: str,
-    output: Optional[str],
+    output: str | None,
     preview: bool,
     no_save: bool,
     width: int,
@@ -394,7 +394,7 @@ def main(
     sharpness: float,
     color: bool,
     color_boost: float,
-    bg: Optional[tuple[int, int, int]],
+    bg: tuple[int, int, int] | None,
     hide_paths: bool,
 ) -> None:
     """artty — Convert images to detailed braille ASCII art.
@@ -408,13 +408,6 @@ def main(
       - Cross-platform (macOS, Windows, Linux)
       - Configurable output options
     """
-    # Show help if no input provided
-    if input is None:
-        from click import echo
-
-        echo(ctx.get_help())
-        ctx.exit(0)
-
     # Validate positive values
     if contrast <= 0:
         error("--contrast must be a positive number.")
@@ -429,7 +422,7 @@ def main(
         error("--padding cannot be negative.")
         sys.exit(1)
 
-    bg_color: Optional[tuple[int, int, int]] = None
+    bg_color: tuple[int, int, int] | None = None
     if bg:
         bg_color = (int(bg[0]), int(bg[1]), int(bg[2]))
     output_path = resolve_output_path(

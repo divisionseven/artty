@@ -57,71 +57,155 @@ class TestSupportsAnsi:
 
         # Create mock ctypes with working functions
         class MockKernel:
-            def GetStdHandle(self, handle):
+            def GetStdHandle(self, handle):  # noqa: N802
                 return 1
 
-            def SetConsoleMode(self, handle, mode):
+            def GetConsoleMode(self, handle, mode_ptr):  # noqa: N802
+                # Simulate successful GetConsoleMode by writing to the DWORD
+                mode_ptr._value = 0  # noqa: SLF001
                 return True
 
+            def SetConsoleMode(self, handle, mode):  # noqa: N802
+                return True
+
+        class MockWintypes:
+            class HANDLE:
+                def __init__(self, value):
+                    self.value = value
+
+                def __eq__(self, other):
+                    # Allow comparison with integers (e.g., == -1)
+                    if isinstance(other, MockWintypes.HANDLE):
+                        return self.value == other.value
+                    return self.value == other
+
+            class DWORD:
+                def __init__(self, value=0):
+                    self.value = value
+
         class MockCtypes:
-            windll = type("windll", (), {"kernel32": MockKernel()})()
+            windll = type("windll", (), {"kernel32": MockKernel()})()  # noqa: N816
 
-        # We need to make ctypes import work with mock
-        import builtins
+            @staticmethod
+            def byref(obj):
+                # Return a mock reference that allows setting _value
+                ref = type("ref", (), {"_value": obj.value})()
+                return ref
 
-        original_import = builtins.__import__
+        # Store original modules to restore later
+        original_ctypes = sys.modules.get("ctypes")
+        original_wintypes = sys.modules.get("ctypes.wintypes")
 
-        def mock_import(name, *args, **kwargs):
-            if name == "ctypes":
-                return MockCtypes()
-            return original_import(name, *args, **kwargs)
+        try:
+            # Create mock instance with wintypes attribute for 'from ctypes import wintypes'
+            mock_ctypes = MockCtypes()
+            mock_ctypes.wintypes = MockWintypes()  # noqa: N816
 
-        monkeypatch.setattr(builtins, "__import__", mock_import)
-        result = _supports_ansi()
-        assert result is True
+            # Directly patch sys.modules to bypass import machinery
+            sys.modules["ctypes"] = mock_ctypes
+            sys.modules["ctypes.wintypes"] = MockWintypes()
+            result = _supports_ansi()
+            assert result is True
+        finally:
+            # Restore original modules
+            if original_ctypes is not None:
+                sys.modules["ctypes"] = original_ctypes
+            elif "ctypes" in sys.modules:
+                del sys.modules["ctypes"]
+            if original_wintypes is not None:
+                sys.modules["ctypes.wintypes"] = original_wintypes
+            elif "ctypes.wintypes" in sys.modules:
+                del sys.modules["ctypes.wintypes"]
 
     def test_windows_with_ctypes_import_failure_returns_false(self, monkeypatch):
         """Test that Windows with ctypes import failure returns False."""
         monkeypatch.setattr(sys, "platform", "win32")
 
-        # Mock ctypes import to raise an exception
-        import builtins
-
-        original_import = builtins.__import__
+        # Store original module to restore later
+        original_ctypes = sys.modules.get("ctypes")
+        original_wintypes = sys.modules.get("ctypes.wintypes")
 
         def mock_import(name, *args, **kwargs):
-            if name == "ctypes":
-                raise ImportError("No module named 'ctypes'")
-            return original_import(name, *args, **kwargs)
+            raise ImportError(f"No module named '{name}'")
 
-        monkeypatch.setattr(builtins, "__import__", mock_import)
-        result = _supports_ansi()
-        assert result is False
+        try:
+            # Remove ctypes from sys.modules and patch __import__ to raise
+            # This simulates a scenario where ctypes cannot be loaded
+            if "ctypes" in sys.modules:
+                del sys.modules["ctypes"]
+            if "ctypes.wintypes" in sys.modules:
+                del sys.modules["ctypes.wintypes"]
 
-    def test_windows_with_SetConsoleMode_failure_returns_false(self, monkeypatch):
+            monkeypatch.setattr("builtins.__import__", mock_import)
+            result = _supports_ansi()
+            assert result is False
+        finally:
+            # Restore original modules
+            if original_ctypes is not None:
+                sys.modules["ctypes"] = original_ctypes
+            if original_wintypes is not None:
+                sys.modules["ctypes.wintypes"] = original_wintypes
+
+    def test_windows_with_SetConsoleMode_failure_returns_false(self, monkeypatch):  # noqa: N802
         """Test that Windows when SetConsoleMode fails returns False."""
         monkeypatch.setattr(sys, "platform", "win32")
 
         # Create mock ctypes where SetConsoleMode raises an exception
         class MockKernel:
-            def GetStdHandle(self, handle):
+            def GetStdHandle(self, handle):  # noqa: N802
                 return 1
 
-            def SetConsoleMode(self, handle, mode):
+            def GetConsoleMode(self, handle, mode_ptr):  # noqa: N802
+                # Simulate successful GetConsoleMode
+                mode_ptr._value = 0  # noqa: SLF001
+
+            def SetConsoleMode(self, handle, mode):  # noqa: N802
                 raise Exception("Console mode not supported")
 
+        class MockWintypes:
+            class HANDLE:
+                def __init__(self, value):
+                    self.value = value
+
+                def __eq__(self, other):
+                    # Allow comparison with integers (e.g., == -1)
+                    if isinstance(other, MockWintypes.HANDLE):
+                        return self.value == other.value
+                    return self.value == other
+
+            class DWORD:
+                def __init__(self, value=0):
+                    self.value = value
+
         class MockCtypes:
-            windll = type("windll", (), {"kernel32": MockKernel()})()
+            windll = type("windll", (), {"kernel32": MockKernel()})()  # noqa: N816
 
-        import builtins
+            @staticmethod
+            def byref(obj):
+                ref = type("ref", (), {"_value": obj.value})()  # noqa: SLF001
+                return ref
 
-        original_import = builtins.__import__
+        # Store original modules to restore later
+        original_ctypes = sys.modules.get("ctypes")
+        original_wintypes = sys.modules.get("ctypes.wintypes")
 
-        def mock_import(name, *args, **kwargs):
-            if name == "ctypes":
-                return MockCtypes()
-            return original_import(name, *args, **kwargs)
+        try:
+            # Create mock instance with wintypes attribute for 'from ctypes import wintypes'
+            mock_ctypes = MockCtypes()
+            mock_ctypes.wintypes = MockWintypes()  # noqa: N816
 
-        monkeypatch.setattr(builtins, "__import__", mock_import)
-        result = _supports_ansi()
-        assert result is False
+            # Directly patch sys.modules to bypass import machinery
+            sys.modules["ctypes"] = mock_ctypes
+            sys.modules["ctypes.wintypes"] = MockWintypes()
+            result = _supports_ansi()
+            assert result is False
+        finally:
+            # Restore original modules
+            if original_ctypes is not None:
+                sys.modules["ctypes"] = original_ctypes
+            elif "ctypes" in sys.modules:
+                del sys.modules["ctypes"]
+            if original_wintypes is not None:
+                sys.modules["ctypes.wintypes"] = original_wintypes
+            elif "ctypes.wintypes" in sys.modules:
+                del sys.modules["ctypes.wintypes"]

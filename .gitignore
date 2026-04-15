@@ -137,6 +137,12 @@ dmypy.json
 .idea/
 .vscode/
 
+# Tools
+.ckb/
+.srclight/
+.codebase-index-cache.pkl
+index.scip
+
 # pytest
 .pytest_cache/
 

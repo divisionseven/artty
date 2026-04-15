@@ -20,7 +20,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Windows ANSI detection tests now correctly mock ctypes using `sys.modules` patching instead of `builtins.__import__` (fixes sys.modules caching issue that bypassed import mocking)
 - CLI now shows help menu when run with no arguments instead of a missing argument error
+- README demo tables — equal column widths using GitHub-compatible pixel sizing
 - Hardcoded path in test_main.py — now uses dynamic path resolution
 - SECURITY.md version table to reflect 0.1.x releases
 - Various lint issues (unused imports, type annotations, duplicate tests)
@@ -29,6 +31,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Badge styles to black background, white logos, plastic style
 - Dynamic version in `__init__.py` using `importlib.metadata`
+
+### Removed
+
+- Removed stale `test_version_flag` test that hardcoded version number and would fail on every version bump
 
 ## [0.1.1] - 2026-04-13
 

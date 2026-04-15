@@ -3,7 +3,6 @@
 import os
 
 from artty.ansi import _supports_ansi
-from typing import Optional
 
 # Max dimensions to prevent memory exhaustion (8192x8192 = ~67M pixels)
 MAX_WIDTH = 8192
@@ -65,7 +64,7 @@ def image_to_braille(
     sharpness: float,
     crop_padding: int,
     color: bool = True,
-    bg_color: Optional[tuple[int, int, int]] = None,
+    bg_color: tuple[int, int, int] | None = None,
     color_boost: float = 1.2,
     transparent: str = "ignore",
 ) -> str:
@@ -133,14 +132,16 @@ def image_to_braille(
     try:
         from PIL import Image, ImageEnhance
     except ImportError:
-        raise ImportError("Pillow is required. Install it with: pip install Pillow")
+        raise ImportError(
+            "Pillow is required. Install it with: pip install Pillow"
+        ) from None
 
     # ── Load image and validate dimensions ─────────────────────────────────────────
     try:
-        img: "Image.Image" = Image.open(path)
+        img: Image.Image = Image.open(path)
         width_px, height_px = img.size
     except Exception as e:
-        raise ValueError(f"Cannot read image: {e}")
+        raise ValueError(f"Cannot read image: {e}") from e
 
     # ── Handle transparency based on mode ────────────────────────────────────────
     # Check if image has transparency (either RGBA or indexed with palette)
@@ -231,7 +232,7 @@ def image_to_braille(
     lines = []
     for cy in range(char_height):
         row_chars = []
-        row_colors: list[Optional[tuple[int, int, int]]] = []
+        row_colors: list[tuple[int, int, int] | None] = []
 
         for cx in range(width):
             bits = 0
@@ -295,7 +296,7 @@ def image_to_braille(
         if color:
             parts = [bg_prefix] if bg_color else []
             prev_color = None
-            for ch, col in zip(row_chars, row_colors):
+            for ch, col in zip(row_chars, row_colors, strict=False):
                 if ch == "\u2800":
                     ch = " "
                 if col != prev_color:
@@ -322,7 +323,7 @@ def convert_image(
     sharpness: float = 1.0,
     padding: int = 30,
     color: bool = True,
-    bg_color: Optional[tuple[int, int, int]] = None,
+    bg_color: tuple[int, int, int] | None = None,
     color_boost: float = 1.2,
     transparent: str = "ignore",
 ) -> str:

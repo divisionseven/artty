@@ -4,7 +4,7 @@ requires-python = ">=3.10"
 
 [[package]]
 name = "artty"
-version = "0.1.1"
+version = "0.1.2"
 source = { editable = "." }
 dependencies = [
     { name = "click" },
@@ -18,17 +18,23 @@ dev = [
     { name = "pytest-cov" },
     { name = "ruff" },
 ]
+test = [
+    { name = "pytest" },
+    { name = "pytest-cov" },
+]
 
 [package.metadata]
 requires-dist = [
     { name = "click", specifier = ">=8.0" },
-    { name = "mypy", marker = "extra == 'dev'", specifier = ">=1.0" },
+    { name = "mypy", marker = "extra == 'dev'", specifier = "==1.20.0" },
     { name = "pillow", specifier = ">=10.0" },
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=7.0" },
+    { name = "pytest", marker = "extra == 'test'", specifier = ">=7.0" },
     { name = "pytest-cov", marker = "extra == 'dev'", specifier = ">=4.0" },
+    { name = "pytest-cov", marker = "extra == 'test'", specifier = ">=4.0" },
     { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.3" },
 ]
-provides-extras = ["dev"]
+provides-extras = ["test", "dev"]
 
 [[package]]
 name = "click"

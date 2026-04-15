@@ -5,7 +5,7 @@
     <img src="docs/assets/brand/logo_white.svg" alt="artty" width="500">
   </picture>
 
-# artty
+# arTTY
 
 ### Convert any image to braille ASCII art directly in your terminal
 
@@ -14,7 +14,6 @@
 [![License: MIT][license-badge-badge]][license-badge-link]
 [![Codecov][codecov-badge-badge]][codecov-badge-link]
 [![CI Build][ci-badge-badge]][ci-badge-link]
-[![Tests][tests-badge-badge]][tests-badge-link]
 
 <p>
   <a href="docs/index.md">Documentation</a> &nbsp;·&nbsp; <a href="#-demo">Demo</a> &nbsp;·&nbsp; <a href="#-installation">Install</a> &nbsp;·&nbsp; <a href="https://github.com/divisionseven/artty/issues">Open an Issue</a> &nbsp;·&nbsp; <a href="https://github.com/divisionseven/artty/discussions">Join the Conversation</a>
@@ -33,7 +32,7 @@ Whether you're building a terminal-based dashboard, creating visual presentation
 |-------------------------------|--------------------------------------------------------------------------------------|
 | ⚡  **Unicode Braille Output** | Uses braille characters (U+2800–U+28FF) for efficient 2×4 pixel cell representation  |
 | 🎨  **24-bit ANSI Color**     | Embedded color codes sample only from lit pixels, preventing dark edge contamination |
-| 🖥️  **Cross-Platform**       | Works on macOS, Linux, and Windows with VT support                                   |
+| 🖥️  **Cross-Platform**        | Works on macOS, Linux, and Windows with VT support                                   |
 | 📐  **Preserves Contrast**    | Advanced threshold and sharpness controls maintain image definition                  |
 | ⚙️  **Fully Configurable**    | Adjustable width, threshold, contrast, sharpness, and padding                        |
 | 🔧  **Python API**            | Import `image_to_braille` directly in your own code                                  |
@@ -107,7 +106,7 @@ artty photo.jpg -w 120 --bg 0 0 0 --boost 1.4 -o output.txt
 ```
 **Expected output:** A detailed braille ASCII representation of your image, preview displayed in your terminal and saved to `output.txt`.
 
-### Full Commands List
+### Commands List
 
 ```bash
 # Show help screen
@@ -121,123 +120,156 @@ artty --help
   </picture>
 </div>
 
+#### `artty --help` Output
+
+```bash
+Usage: artty [OPTIONS] [INPUT]
+
+artty — Convert images to detailed braille ASCII art.
+
+A CLI tool that converts images to detailed braille ASCII art with
+accurate color embedding or plain text output.
+
+Features:
+  - Unicode braille characters
+  - 24-bit ANSI color support
+  - Cross-platform (macOS, Windows, Linux)
+  - Configurable output options
+
+Options:
+  -o, --output TEXT              Where to save the .txt file. Accepts a full file path or a directory. If a directory is
+                                 given, the filename is derived from the input image name. Defaults to the same directory
+                                 as the input image.
+  --preview / --no-preview       Print the result to the terminal after saving (default: on).
+  --no-save                      Do not write a .txt file — only print to stdout.
+  -w, --width INTEGER RANGE      Output width in braille characters. Height is auto-calculated. (default: 100)
+                                 [10<=x<=500]
+  -t, --threshold INTEGER RANGE  Luminance threshold (0-255). Pixels brighter than this become braille dots. Lower =
+                                 denser, higher = sparser. (default: 50)  [0<=x<=255]
+  --padding INTEGER              Pixels of padding around auto-detected content. (default: 30)
+  --contrast FLOAT               Contrast enhancement factor. 1.0 = unchanged. (default: 1.0)
+  --sharpness FLOAT              Sharpness enhancement factor. 1.0 = unchanged. (default: 1.0)
+  --color / --no-color           Enable/disable 24-bit ANSI color output. (default: on)
+  --boost FLOAT                  Color brightness multiplier. 1.0-1.4 typical. (default: 1.2)
+  --bg R G B                     Solid ANSI background color as three integers (0-255).  [0<=x<=255]
+  --hide-paths                   Show only filenames in output (hide full paths).
+  --version                      Show the version and exit.
+  -h, --help                     Show this message and exit.
+
+Examples:
+  artty logo.png
+  artty logo.png -o ~/Desktop/logo.txt -w 120
+  artty logo.png --no-color --width 80
+  artty logo.png --bg 0 0 0 --boost 1.4
+```
+
 ---
 
 ## Demo Images
 
 > [!Note]
-> All demo screenshots were captured using the [Ghostty][ghostty-link] Terminal, which supports full TrueColor (24-bit) color output. Other terminal emulators that support TrueColor include [iTerm2][iterm2-link], [Kitty][kitty-link], [Alacritty][alacritty-link], and [WezTerm][wezterm-link], and various others. Artty has currently been tested with both the [Ghostty][ghostty-link] and the [Visual Studio Code][vscode-link] integrated terminal.
+> All demo screenshots were captured using the [Ghostty][ghostty-link] Terminal, which supports full TrueColor (24-bit) color output. Other terminal emulators that support TrueColor include [iTerm2][iterm2-link], [Kitty][kitty-link], [Alacritty][alacritty-link], and [WezTerm][wezterm-link], and various others. arTTY has currently been tested with both the [Ghostty][ghostty-link] and the [Visual Studio Code][vscode-link] integrated terminal.
 >
-> If you use Artty with another terminal emulator, please [open an issue][issues-link] to report its performance.
+> If you use arTTY with another terminal emulator, please [open an issue][issues-link] to report its performance.
 
 ### Full-Color JPEG Conversions
 
 #### NASA 2026 Artemis II Crew Photo
 
 ```bash
-# Convert a NASA JPEG image to braille art using default settings
+# Convert a JPEG image to braille art using default settings
 # with input/output paths hidden from the output message
 artty nasa.jpeg --hide-paths
 ```
-<table style="width: 100%; margin: 0 auto;">
+<table width="100%">
   <tr>
-    <th style="text-align: center;">Input</th>
-    <th style="text-align: center;">Output</th>
+    <th align="center">Input</th>
+    <th align="center">arTTY Output</th>
   </tr>
-<tr>
-    <td style="width: 50%; text-align: center; vertical-align: middle;"><a href="docs/assets/demo_images/inputs/nasa.jpeg"><img src="docs/assets/demo_images/inputs/nasa.jpeg" alt="nasa"/></a></td>
-    <td style="width: 50%; text-align: center; vertical-align: middle;"><a href="docs/assets/demo_images/outputs/screenshots/nasa_color_demo.png"><img src="docs/assets/demo_images/outputs/screenshots/nasa_color_demo.png" alt="nasa output"/></a></td>
+  <tr>
+    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/inputs/nasa.jpeg"><img src="docs/assets/demo_images/inputs/nasa.jpeg" alt="nasa" width="100%"/></a></td>
+    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/nasa_color_demo.png"><img src="docs/assets/demo_images/outputs/screenshots/nasa_color_demo.png" alt="nasa output" width="100%"/></a></td>
   </tr>
 </table>
-<p style="font-size: small; text-align: center; color: gray;">
-Credit: <a href="https://www.nasa.gov" target="_blank">NASA</a> | Brand logos shown for demonstration purposes only. All trademarks are property of their respective owners.
-</p>
+<p align="center"><sub>Credit: <a href="https://www.nasa.gov" target="_blank">NASA</a> | Brand logos shown for demonstration purposes only. All trademarks are property of their respective owners.</sub></p>
 
-#### Demo Large Color Photograph
+#### Large Color JPEG Photograph
 
 ```bash
 # Convert a JPEG image to 150-character width braille art
 # with input/output paths hidden from the output message
 artty JB1.jpeg -w 150 --hide-paths
 ```
-<table style="width: 100%; margin: 0 auto;">
+<table width="100%">
   <tr>
-    <th style="text-align: center;">Input</th>
-    <th style="text-align: center;">Output</th>
+    <th align="center">Input</th>
+    <th align="center">arTTY Output</th>
   </tr>
   <tr>
-    <td style="width: 50%; text-align: center; vertical-align: middle;"><a href="docs/assets/demo_images/inputs/JB1.jpeg"><img src="docs/assets/demo_images/inputs/JB1.jpeg" alt="JB1"/></a></td>
-    <td style="width: 50%; text-align: center; vertical-align: middle;"><a href="docs/assets/demo_images/outputs/screenshots/jb1_color_demo.png"><img src="docs/assets/demo_images/outputs/screenshots/jb1_color_demo.png" alt="JB1 output"/></a></td>
+    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/inputs/JB1.jpeg"><img src="docs/assets/demo_images/inputs/JB1.jpeg" alt="JB1" width="100%"/></a></td>
+    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/jb1_color_demo.png"><img src="docs/assets/demo_images/outputs/screenshots/jb1_color_demo.png" alt="JB1 output" width="100%"/></a></td>
   </tr>
 </table>
-<p style="font-size: small; text-align: center; color: gray;">
-Credit: © Division 7 | All trademarks are property of their respective owners.
-</p>
+<p align="center"><sub>Credit: © Division 7 | All trademarks are property of their respective owners.</sub></p>
 
-#### Demo Large Color Photograph
+#### Large Color JEPG Photograph
 
 ```bash
 # Convert a JPEG image to 175-character width braille art
 # with input/output paths hidden from the output message
 artty JB3.jpeg -w 175 --hide-paths
 ```
-<table style="width: 100%; margin: 0 auto;">
+<table width="100%">
   <tr>
-    <th style="text-align: center;">Input</th>
-    <th style="text-align: center;">Artty Output</th>
+    <th align="center">Input</th>
+    <th align="center">arTTY Output</th>
   </tr>
   <tr>
-    <td style="width: 50%; text-align: center; vertical-align: middle;"><a href="docs/assets/demo_images/inputs/JB3.jpeg"><img src="docs/assets/demo_images/inputs/JB3.jpeg" alt="JB3"/></a></td>
-    <td style="width: 50%; text-align: center; vertical-align: middle;"><a href="docs/assets/demo_images/outputs/screenshots/jb3_color_demo.png"><img src="docs/assets/demo_images/outputs/screenshots/jb3_color_demo.png" alt="JB3 output"/></a></td>
+    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/inputs/JB3.jpeg"><img src="docs/assets/demo_images/inputs/JB3.jpeg" alt="JB3" width="100%"/></a></td>
+    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/jb3_color_demo.png"><img src="docs/assets/demo_images/outputs/screenshots/jb3_color_demo.png" alt="JB3 output" width="100%"/></a></td>
   </tr>
 </table>
-<p style="font-size: small; text-align: center; color: gray;">
-Credit: © Division 7 | All trademarks are property of their respective owners.
-</p>
+<p align="center"><sub>Credit: © Division 7 | All trademarks are property of their respective owners.</sub></p>
 
 ### PNG Logos (with transparency)
 
-#### Artty Logo
+#### arTTY Logo
 
 ```bash
-# Convert the artty logo to 200-character width ASCII art
+# Convert the arTTY logo to 200-character width ASCII art
 # with input/output paths hidden from the output message
 artty logo.png -w 200 --hide-paths
 ```
-<table style="width: 100%; margin: 0 auto;">
+<table width="100%">
   <tr>
-    <th style="text-align: center;">Input</th>
-    <th style="text-align: center;">Artty Output</th>
+    <th align="center">Input</th>
+    <th align="center">arTTY Output</th>
   </tr>
   <tr>
-    <td style="width: 50%; text-align: center; vertical-align: middle;"><a href="docs/assets/demo_images/inputs/logo.png"><img src="docs/assets/demo_images/inputs/logo.png" alt="logo"/></a></td>
-    <td style="width: 50%; text-align: center; vertical-align: middle;"><a href="docs/assets/demo_images/outputs/screenshots/logo_demo.png"><img src="docs/assets/demo_images/outputs/screenshots/logo_demo.png" alt="logo output"/></a></td>
+    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/inputs/logo.png"><img src="docs/assets/demo_images/inputs/logo.png" alt="logo" width="100%"/></a></td>
+    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/logo_demo.png"><img src="docs/assets/demo_images/outputs/screenshots/logo_demo.png" alt="logo output" width="100%"/></a></td>
   </tr>
 </table>
-<p style="font-size: small; text-align: center; color: gray;">
-Credit: <a href="https://github.com/divisionseven/artty" target="_blank">artty GitHub</a>
-</p>
+<p align="center"><sub>Credit: <a href="https://github.com/divisionseven/artty" target="_blank">artty GitHub</a></sub></p>
 
 #### Visual Studio Code Logo
 
 ```bash
-# Convert a VSCode PNG image to braille art
+# Convert the VS Code PNG image to braille art
 # with input/output paths hidden from the output message
 artty vscode.png --hide-paths
 ```
-<table style="width: 100%; margin: 0 auto;">
+<table width="100%">
   <tr>
-    <th style="text-align: center;">Input</th>
-    <th style="text-align: center;">Artty Output</th>
+    <th align="center">Input</th>
+    <th align="center">arTTY Output</th>
   </tr>
   <tr>
-    <td style="width: 50%; text-align: center; vertical-align: middle;"><a href="docs/assets/demo_images/inputs/vscode.png"><img src="docs/assets/demo_images/inputs/vscode.png" alt="vscode"/></a></td>
-    <td style="width: 50%; text-align: center; vertical-align: middle;"><a href="docs/assets/demo_images/outputs/screenshots/vscode_color_demo.png"><img src="docs/assets/demo_images/outputs/screenshots/vscode_color_demo.png" alt="vscode output"/></a></td>
+    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/inputs/vscode.png"><img src="docs/assets/demo_images/inputs/vscode.png" alt="vscode" width="100%"/></a></td>
+    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/vscode_color_demo.png"><img src="docs/assets/demo_images/outputs/screenshots/vscode_color_demo.png" alt="vscode output" width="100%"/></a></td>
   </tr>
 </table>
-<p style="font-size: small; text-align: center; color: gray;">
-Credit: <a href="https://code.visualstudio.com" target="_blank">Microsoft/VSCode</a> | Brand logos shown for demonstration purposes only. All trademarks are property of their respective owners.
-</p>
+<p align="center"><sub>Credit: <a href="https://code.visualstudio.com" target="_blank">Microsoft/VSCode</a> | Brand logos shown for demonstration purposes only. All trademarks are property of their respective owners.</sub></p>
 
 #### Linux "Tux" Logo
 
@@ -246,19 +278,17 @@ Credit: <a href="https://code.visualstudio.com" target="_blank">Microsoft/VSCode
 # with input/output paths hidden from the output message
 artty linux.png --hide-paths
 ```
-<table style="width: 100%; margin: 0 auto;">
+<table width="100%">
   <tr>
-    <th style="text-align: center;">Input</th>
-    <th style="text-align: center;">Artty Output</th>
+    <th align="center">Input</th>
+    <th align="center">arTTY Output</th>
   </tr>
   <tr>
-    <td style="width: 50%; text-align: center; vertical-align: middle;"><a href="docs/assets/demo_images/inputs/linux.png"><img src="docs/assets/demo_images/inputs/linux.png" alt="linux"/></a></td>
-    <td style="width: 50%; text-align: center; vertical-align: middle;"><a href="docs/assets/demo_images/outputs/screenshots/linux_color_demo.png"><img src="docs/assets/demo_images/outputs/screenshots/linux_color_demo.png" alt="linux output"/></a></td>
+    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/inputs/linux.png"><img src="docs/assets/demo_images/inputs/linux.png" alt="linux" width="100%"/></a></td>
+    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/linux_color_demo.png"><img src="docs/assets/demo_images/outputs/screenshots/linux_color_demo.png" alt="linux output" width="100%"/></a></td>
   </tr>
 </table>
-<p style="font-size: small; text-align: center; color: gray;">
-Credit: <a href="https://www.linux.org" target="_blank">Linux</a> | Brand logos shown for demonstration purposes only. All trademarks are property of their respective owners.
-</p>
+<p align="center"><sub>Credit: <a href="https://www.linux.org" target="_blank">Linux</a> | Brand logos shown for demonstration purposes only. All trademarks are property of their respective owners.</sub></p>
 
 #### GitHub White Logo
 
@@ -267,19 +297,17 @@ Credit: <a href="https://www.linux.org" target="_blank">Linux</a> | Brand logos 
 # with input/output paths hidden from the output message
 artty github_full.png -w 200 --no-color --hide-paths
 ```
-<table style="width: 100%; margin: 0 auto;">
+<table width="100%">
   <tr>
-    <th style="text-align: center;">Input</th>
-    <th style="text-align: center;">Artty Plain TXT Output</th>
+    <th align="center">Input</th>
+    <th align="center">arTTY Plain TXT Output</th>
   </tr>
   <tr>
-    <td style="width: 50%; text-align: center; vertical-align: middle;"><a href="docs/assets/demo_images/inputs/github_full.png"><img src="docs/assets/demo_images/inputs/github_full.png" alt="github"/></a></td>
-    <td style="width: 50%; text-align: center; vertical-align: middle;"><a href="docs/assets/demo_images/outputs/screenshots/github_full_plain_demo.png"><img src="docs/assets/demo_images/outputs/screenshots/github_full_plain_demo.png" alt="github output"/></a></td>
+    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/inputs/github_full.png"><img src="docs/assets/demo_images/inputs/github_full.png" alt="github" width="100%"/></a></td>
+    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/github_full_plain_demo.png"><img src="docs/assets/demo_images/outputs/screenshots/github_full_plain_demo.png" alt="github output" width="100%"/></a></td>
   </tr>
 </table>
-<p style="font-size: small; text-align: center; color: gray;">
-Credit: <a href="https://github.com" target="_blank">GitHub</a> | Brand logos shown for demonstration purposes only. All trademarks are property of their respective owners.
-</p>
+<p align="center"><sub>Credit: <a href="https://github.com" target="_blank">GitHub</a> | Brand logos shown for demonstration purposes only. All trademarks are property of their respective owners.</sub></p>
 
 #### PKG-Defender Repo PNG Logo
 
@@ -288,19 +316,17 @@ Credit: <a href="https://github.com" target="_blank">GitHub</a> | Brand logos sh
 # with input/output paths hidden from the output message
 artty pkg-defender.png -w 125 --no-color --hide-paths
 ```
-<table style="width: 100%; margin: 0 auto;">
+<table width="100%">
   <tr>
-    <th style="text-align: center;">Input</th>
-    <th style="text-align: center;">Artty Plain TXT Output</th>
+    <th align="center">Input</th>
+    <th align="center">arTTY Plain TXT Output</th>
   </tr>
   <tr>
-    <td style="width: 50%; text-align: center; vertical-align: middle;"><a href="docs/assets/demo_images/inputs/pkg-defender.png"><img src="docs/assets/demo_images/inputs/pkg-defender.png" alt="pkg-defender"/></a></td>
-    <td style="width: 50%; text-align: center; vertical-align: middle;"><a href="docs/assets/demo_images/outputs/screenshots/pkgd_plain_demo.png"><img src="docs/assets/demo_images/outputs/screenshots/pkgd_plain_demo.png" alt="pkg-defender output"/></a></td>
+    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/inputs/pkg-defender.png"><img src="docs/assets/demo_images/inputs/pkg-defender.png" alt="pkg-defender" width="100%"/></a></td>
+    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/pkgd_plain_demo.png"><img src="docs/assets/demo_images/outputs/screenshots/pkgd_plain_demo.png" alt="pkg-defender output" width="100%"/></a></td>
   </tr>
 </table>
-<p style="font-size: small; text-align: center; color: gray;">
-Credit: <a href="https://github.com/divisionseven/pkg-defender" target="_blank">PKG-Defender GitHub</a> | "Supply-Chain Attack Defense CLI"
-</p>
+<p align="center"><sub>Credit: <a href="https://github.com/divisionseven/pkg-defender" target="_blank">PKG-Defender GitHub</a> | "Supply-Chain Attack Defense CLI"</sub></p>
 
 ### Conversions With and Without Color Embedding
 
@@ -315,21 +341,19 @@ artty arch.png -w 200 --hide-paths
 # with input/output paths hidden from the output message
 artty arch.png -w 200 --no-color --hide-paths
 ```
-<table style="width: 100%; margin: 0 auto;">
+<table width="100%">
   <tr>
-    <th style="text-align: center;">Input</th>
-    <th style="text-align: center;">Artty Color-Embedded Output</th>
-    <th style="text-align: center;">Artty Plain TXT Output</th>
+    <th align="center">Input</th>
+    <th align="center">arTTY Color-Embedded Output</th>
+    <th align="center">arTTY Plain TXT Output</th>
   </tr>
   <tr>
-    <td style="width: 33.33%; text-align: center; vertical-align: middle;"><a href="docs/assets/demo_images/inputs/arch.png"><img src="docs/assets/demo_images/inputs/arch.png" alt="arch"/></a></td>
-    <td style="width: 33.33%; text-align: center; vertical-align: middle;"><a href="docs/assets/demo_images/outputs/screenshots/arch_color_demo.png"><img src="docs/assets/demo_images/outputs/screenshots/arch_color_demo.png" alt="arch color output"/></a></td>
-    <td style="width: 33.33%; text-align: center; vertical-align: middle;"><a href="docs/assets/demo_images/outputs/screenshots/arch_plain_demo.png"><img src="docs/assets/demo_images/outputs/screenshots/arch_plain_demo.png" alt="arch plain output"/></a></td>
+    <td width="33%" align="center" valign="middle"><a href="docs/assets/demo_images/inputs/arch.png"><img src="docs/assets/demo_images/inputs/arch.png" alt="arch" width="100%"/></a></td>
+    <td width="33%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/arch_color_demo.png"><img src="docs/assets/demo_images/outputs/screenshots/arch_color_demo.png" alt="arch color output" width="100%"/></a></td>
+    <td width="33%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/arch_plain_demo.png"><img src="docs/assets/demo_images/outputs/screenshots/arch_plain_demo.png" alt="arch plain output" width="100%"/></a></td>
   </tr>
 </table>
-<p style="font-size: small; text-align: center; color: gray;">
-Credit: <a href="https://archlinux.org" target="_blank">Arch Linux</a> | Brand logos shown for demonstration purposes only. All trademarks are property of their respective owners.
-</p>
+<p align="center"><sub>Credit: <a href="https://archlinux.org" target="_blank">Arch Linux</a> | Brand logos shown for demonstration purposes only. All trademarks are property of their respective owners.</sub></p>
 
 #### Apple 1977-1998 Color Logo
 
@@ -342,21 +366,19 @@ artty apple.png -w 80 --hide-paths
 # with input/output paths hidden from the output message
 artty apple.png -w 80 --no-color --hide-paths
 ```
-<table style="width: 100%; margin: 0 auto;">
+<table width="100%">
   <tr>
-    <th style="text-align: center;">Input</th>
-    <th style="text-align: center;">Artty Color-Embedded Output</th>
-    <th style="text-align: center;">Artty Plain TXT Output</th>
+    <th align="center">Input</th>
+    <th align="center">arTTY Color-Embedded Output</th>
+    <th align="center">arTTY Plain TXT Output</th>
   </tr>
   <tr>
-    <td style="width: 33.33%; text-align: center; vertical-align: middle;"><a href="docs/assets/demo_images/inputs/apple.png"><img src="docs/assets/demo_images/inputs/apple.png" alt="apple"/></a></td>
-    <td style="width: 33.33%; text-align: center; vertical-align: middle;"><a href="docs/assets/demo_images/outputs/screenshots/apple_color_demo.png"><img src="docs/assets/demo_images/outputs/screenshots/apple_color_demo.png" alt="apple color output"/></a></td>
-    <td style="width: 33.33%; text-align: center; vertical-align: middle;"><a href="docs/assets/demo_images/outputs/screenshots/apple_plain_demo.png"><img src="docs/assets/demo_images/outputs/screenshots/apple_plain_demo.png" alt="apple plain output"/></a></td>
+    <td width="33%" align="center" valign="middle"><a href="docs/assets/demo_images/inputs/apple.png"><img src="docs/assets/demo_images/inputs/apple.png" alt="apple" width="100%"/></a></td>
+    <td width="33%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/apple_color_demo.png"><img src="docs/assets/demo_images/outputs/screenshots/apple_color_demo.png" alt="apple color output" width="100%"/></a></td>
+    <td width="33%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/apple_plain_demo.png"><img src="docs/assets/demo_images/outputs/screenshots/apple_plain_demo.png" alt="apple plain output" width="100%"/></a></td>
   </tr>
 </table>
-<p style="font-size: small; text-align: center; color: gray;">
-Credit: <a href="https://www.apple.com" target="_blank">Apple</a> | Brand logos shown for demonstration purposes only. All trademarks are property of their respective owners.
-</p>
+<p align="center"><sub>Credit: <a href="https://www.apple.com" target="_blank">Apple</a> | Brand logos shown for demonstration purposes only. All trademarks are property of their respective owners.</sub></p>
 
 ---
 
@@ -394,7 +416,7 @@ For detailed technical information, see the [Documentation Index][docs-index-lin
 
 ## Python API
 
-Artty can be used directly as a Python library for more control over the conversion process. Import the `image_to_braille` function and pass various parameters to customize the output.
+arTTY can be used directly as a Python library for more control over the conversion process. Import the `image_to_braille` function and pass various parameters to customize the output.
 
 ### Basic Usage
 
@@ -452,7 +474,7 @@ result = image_to_braille(
 print(result)
 ```
 
-### Black and White Output
+### Plain Text Output
 
 Disable color output when you need plain text for logging, saving to files, or terminals without color support:
 
@@ -558,7 +580,7 @@ Distributed under the MIT License. See [LICENSE][license-link] for more informat
 
 ---
 
-**Last updated:** 2026-04-13
+**Last updated:** 2026-04-15
 
 <!-- Badge Links -->
 [pypi-badge-badge]: https://img.shields.io/pypi/v/artty?style=plastic&bg=black&logo=pypi&logoColor=white
@@ -569,10 +591,8 @@ Distributed under the MIT License. See [LICENSE][license-link] for more informat
 [license-badge-link]: https://opensource.org/licenses/MIT
 [codecov-badge-badge]: https://img.shields.io/codecov/c/github/divisionseven/artty?logo=codecov&style=plastic&color=black&logoColor=white
 [codecov-badge-link]: https://app.codecov.io/gh/divisionseven/artty
-[ci-badge-badge]: https://img.shields.io/github/actions/workflow/status/divisionseven/artty/ci?logo=github&style=plastic&color=black&logoColor=white
+[ci-badge-badge]: https://img.shields.io/github/actions/workflow/status/divisionseven/artty/ci.yml?branch=main&logo=github&style=plastic&color=black&logoColor=white
 [ci-badge-link]: https://github.com/divisionseven/artty/actions/workflows/ci.yml
-[tests-badge-badge]: https://img.shields.io/github/actions/workflow/status/divisionseven/artty/ci?logo=github&style=plastic&color=black&logoColor=white
-[tests-badge-link]: https://github.com/divisionseven/artty/actions/workflows/ci.yml
 
 <!-- Logo Assets -->
 

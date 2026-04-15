@@ -25,12 +25,6 @@ class TestCliHelp:
         assert "-t, --threshold" in result.output
         assert "--color" in result.output and "--no-color" in result.output
 
-    def test_version_flag(self, runner):
-        """Test that --version displays version."""
-        result = runner.invoke(main, ["--version"])
-        assert result.exit_code == 0
-        assert "1.1.0" in result.output
-
 
 class TestCliValidation:
     """Tests for CLI argument validation."""
@@ -608,7 +602,7 @@ class TestCliTerminalWidthHandling:
         """Test help when os.get_terminal_size() raises OSError."""
 
         # Mock to raise OSError
-        def mock_get_terminal_size():
+        def mock_get_terminal_size(fallback=(80, 24)):
             raise OSError("Inappropriate ioctl")
 
         monkeypatch.setattr("os.get_terminal_size", mock_get_terminal_size)
@@ -624,7 +618,9 @@ class TestCliTerminalWidthHandling:
             columns = 0
             lines = 24
 
-        monkeypatch.setattr("os.get_terminal_size", lambda: MockTerminalSize())
+        monkeypatch.setattr(
+            "os.get_terminal_size", lambda fallback=(80, 24): MockTerminalSize()
+        )
 
         result = runner.invoke(main, ["--help"])
         assert result.exit_code == 0
@@ -637,7 +633,9 @@ class TestCliTerminalWidthHandling:
             columns = 78
             lines = 24
 
-        monkeypatch.setattr("os.get_terminal_size", lambda: MockTerminalSize())
+        monkeypatch.setattr(
+            "os.get_terminal_size", lambda fallback=(80, 24): MockTerminalSize()
+        )
 
         # This should trigger the elif branch at line 218-220
         # where width is 78 and we fall back to 100
@@ -653,7 +651,9 @@ class TestCliTerminalWidthHandling:
             columns = 120
             lines = 24
 
-        monkeypatch.setattr("os.get_terminal_size", lambda: MockTerminalSize())
+        monkeypatch.setattr(
+            "os.get_terminal_size", lambda fallback=(80, 24): MockTerminalSize()
+        )
 
         result = runner.invoke(main, ["--help"])
         assert result.exit_code == 0
@@ -714,7 +714,9 @@ class TestCliRemainingCoverage:
             columns = 78
             lines = 24
 
-        monkeypatch.setattr("os.get_terminal_size", lambda: MockTerminalSize())
+        monkeypatch.setattr(
+            "os.get_terminal_size", lambda fallback=(80, 24): MockTerminalSize()
+        )
 
         result = runner.invoke(main, ["--help"])
         assert result.exit_code == 0
@@ -724,7 +726,7 @@ class TestCliRemainingCoverage:
         """Test help when formatter width is None."""
 
         # Mock os.get_terminal_size to raise OSError (None case)
-        def mock_get_terminal_size():
+        def mock_get_terminal_size(fallback=(80, 24)):
             raise OSError("No terminal")
 
         monkeypatch.setattr("os.get_terminal_size", mock_get_terminal_size)
@@ -770,8 +772,9 @@ class TestCliEpilogCoverage:
 
     def test_custom_formatter_with_examples(self, runner):
         """Test GroupedHelpFormatter write_examples method."""
-        from artty.cli import GroupedHelpFormatter
         import click
+
+        from artty.cli import GroupedHelpFormatter
 
         formatter = GroupedHelpFormatter(width=100)
         ctx = click.Context(click.Command("test"))
@@ -845,10 +848,9 @@ class TestCliDirectFunctionCalls:
 
     def test_c_function_directly(self):
         """Test _c function directly."""
-        from artty.cli import _c
-
         # When USE_ANSI is True
         import artty.cli as cli_module
+        from artty.cli import _c
 
         original_use_ansi = cli_module.USE_ANSI
         cli_module.USE_ANSI = True
@@ -860,9 +862,9 @@ class TestCliDirectFunctionCalls:
 
     def test_resolve_output_path_absolute_in_same_dir(self):
         """Test resolve_output_path with absolute path in same directory."""
-        from artty.cli import resolve_output_path
-
         import tempfile
+
+        from artty.cli import resolve_output_path
 
         with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as f:
             test_path = f.name
@@ -879,10 +881,10 @@ class TestCliDirectFunctionCalls:
 
     def test_resolve_output_path_directory_expansion(self):
         """Test resolve_output_path with ~ expansion to directory."""
-        from artty.cli import resolve_output_path
-
-        import tempfile
         import os
+        import tempfile
+
+        from artty.cli import resolve_output_path
 
         with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as f:
             test_path = f.name
@@ -923,7 +925,9 @@ class TestCliTerminalDetection:
             columns = 50
             lines = 24
 
-        monkeypatch.setattr("os.get_terminal_size", lambda: MockTerminalSize())
+        monkeypatch.setattr(
+            "os.get_terminal_size", lambda fallback=(80, 24): MockTerminalSize()
+        )
 
         result = runner.invoke(main, ["--help"])
         assert result.exit_code == 0
@@ -937,7 +941,9 @@ class TestCliTerminalDetection:
             columns = 78
             lines = 24
 
-        monkeypatch.setattr("os.get_terminal_size", lambda: MockTerminalSize())
+        monkeypatch.setattr(
+            "os.get_terminal_size", lambda fallback=(80, 24): MockTerminalSize()
+        )
 
         result = runner.invoke(main, ["--help"])
         assert result.exit_code == 0
