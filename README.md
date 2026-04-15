@@ -56,7 +56,7 @@ pip install artty
 ### From Source
 
 ```bash
-git clone [repo-link]
+git clone https://github.com/divisionseven/artty.git
 cd artty
 
 # Using uv (recommended)
