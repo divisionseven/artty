@@ -7,7 +7,7 @@
 
 # artty
 
-### Convert any image to braille ASCII art in your terminal
+### Convert any image to braille ASCII art directly in your terminal
 
 [![PyPI Version][pypi-badge-badge]][pypi-badge-link]
 [![Python Versions][python-badge-badge]][python-badge-link]
@@ -26,7 +26,6 @@
 `artty` is a command-line tool and Python library that converts images to Unicode braille ASCII art with 24-bit ANSI color support. It preserves image contrast and sharpness while producing detailed, scanable output that works in any modern terminal on macOS, Linux, or Windows.
 
 Whether you're building a terminal-based dashboard, creating visual presentations, or just having fun with ASCII art, `artty` gives you professional results with minimal configuration.
-
 
 ## Features
 
@@ -130,7 +129,6 @@ artty --help
 > All demo screenshots were captured using the [Ghostty][ghostty-link] Terminal, which supports full TrueColor (24-bit) color output. Other terminal emulators that support TrueColor include [iTerm2][iterm2-link], [Kitty][kitty-link], [Alacritty][alacritty-link], and [WezTerm][wezterm-link], and various others. Artty has currently been tested with both the [Ghostty][ghostty-link] and the [Visual Studio Code][vscode-link] integrated terminal.
 >
 > If you use Artty with another terminal emulator, please [open an issue][issues-link] to report its performance.
-
 
 ### Full-Color JPEG Conversions
 
@@ -303,7 +301,6 @@ artty pkg-defender.png -w 125 --no-color --hide-paths
 <p style="font-size: small; text-align: center; color: gray;">
 Credit: <a href="https://github.com/divisionseven/pkg-defender" target="_blank">PKG-Defender GitHub</a> | "Supply-Chain Attack Defense CLI"
 </p>
-
 
 ### Conversions With and Without Color Embedding
 
@@ -563,7 +560,6 @@ Distributed under the MIT License. See [LICENSE][license-link] for more informat
 
 **Last updated:** 2026-04-13
 
-
 <!-- Badge Links -->
 [pypi-badge-badge]: https://img.shields.io/pypi/v/artty?style=plastic&bg=black&logo=pypi&logoColor=white
 [pypi-badge-link]: https://pypi.org/project/artty/
@@ -579,8 +575,6 @@ Distributed under the MIT License. See [LICENSE][license-link] for more informat
 [tests-badge-link]: https://github.com/divisionseven/artty/actions/workflows/ci.yml
 
 <!-- Logo Assets -->
-[logo-banner]: docs/assets/brand/logo.png
-[logo-banner-demo]: docs/assets/brand/logo_demo.png
 
 <!-- Documentation Links -->
 [docs-index-link]: docs/index.md
@@ -591,9 +585,7 @@ Distributed under the MIT License. See [LICENSE][license-link] for more informat
 [license-link]: LICENSE
 
 <!-- Repo Links -->
-[repo-link]: https://github.com/divisionseven/artty
 [issues-link]: https://github.com/divisionseven/artty/issues
-[discussions-link]: https://github.com/divisionseven/artty/discussions
 
 <!-- Terminal Emulator Links -->
 [ghostty-link]: https://ghostty.org

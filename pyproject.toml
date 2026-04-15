@@ -1,19 +1,16 @@
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools>=68.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "artty"
-version = "0.1.1"
-description = "Convert images to braille ASCII art with color or plain output — a terminal art tool"
+version = "0.1.2"
+description = "Convert any image to Unicode braille ASCII art with 24-bit ANSI color support — directly in your terminal"
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
 license-files = ["LICENSE"]
 authors = [
-    { name = "divisionseven", email = "divisionseven@users.noreply.github.com" },
-]
-maintainers = [
     { name = "divisionseven", email = "divisionseven@users.noreply.github.com" },
 ]
 keywords = ["ascii", "art", "braille", "image", "conversion", "cli"]
@@ -26,23 +23,30 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3 :: Only",
+    "Typing :: Typed",
+    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
 
 dependencies = ["Pillow>=10.0", "click>=8.0"]
 
+[project.urls]
+Homepage = "https://github.com/divisionseven/artty"
+Repository = "https://github.com/divisionseven/artty"
+"Bug Tracker" = "https://github.com/divisionseven/artty/issues"
+Changelog = "https://github.com/divisionseven/artty/blob/main/CHANGELOG.md"
+
 [project.optional-dependencies]
+test = ["pytest>=7.0", "pytest-cov>=4.0"]
 dev = ["pytest>=7.0", "pytest-cov>=4.0", "ruff>=0.3", "mypy>=1.0"]
 
 [project.scripts]
 artty = "artty.cli:main"
 
-[tool.hatch.build.targets.wheel]
-packages = ["src.artty"]
-
-[tool.hatch.build.targets.wheel.force-include]
-completions = "completions"
-man = "man"
+[tool.setuptools.packages.find]
+where = ["src"]
+exclude = ["tests*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -57,11 +61,20 @@ omit = ["*/__init__.py"]
 fail_under = 86
 show_missing = true
 skip_covered = false
+exclude_lines = [
+    "pragma: no cover",
+    "if TYPE_CHECKING:",
+    "raise NotImplementedError",
+]
 
 [tool.ruff]
 target-version = "py310"
 line-length = 88
 src = ["src"]
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "B", "C4", "UP", "N"]
+ignore = ["E501"]
 
 [tool.mypy]
 python_version = "3.10"

@@ -21,8 +21,6 @@ from typing import Any, Optional
 import click
 
 from artty import __version__
-
-
 from artty.ansi import _supports_ansi
 from artty.converter import image_to_braille
 
@@ -297,7 +295,7 @@ def _custom_format_help(
     context_settings={"help_option_names": ["-h", "--help"]},
     epilog="Full documentation: https://github.com/divisionseven/artty#readme\nReport bugs: https://github.com/divisionseven/artty/issues",
 )
-@click.argument("input", type=click.Path(exists=True), required=True)
+@click.argument("input", type=click.Path(exists=True), required=False)
 @click.option(
     "-o",
     "--output",
@@ -381,8 +379,10 @@ def _custom_format_help(
     default=False,
     help="Show only filenames in output (hide full paths).",
 )
+@click.pass_context
 @click.version_option(version=__version__, prog_name="artty")
 def main(
+    ctx: click.Context,
     input: str,
     output: Optional[str],
     preview: bool,
@@ -408,6 +408,13 @@ def main(
       - Cross-platform (macOS, Windows, Linux)
       - Configurable output options
     """
+    # Show help if no input provided
+    if input is None:
+        from click import echo
+
+        echo(ctx.get_help())
+        ctx.exit(0)
+
     # Validate positive values
     if contrast <= 0:
         error("--contrast must be a positive number.")

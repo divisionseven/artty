@@ -96,6 +96,9 @@ __pypackages__/
 celerybeat-schedule
 celerybeat.pid
 
+# Pkl files
+.codebase-index-cache.pkl
+
 # SageMath parsed files
 *.sage.py
 

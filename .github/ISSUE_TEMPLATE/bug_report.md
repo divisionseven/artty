@@ -27,8 +27,7 @@ What actually happened. Include any error messages or tracebacks.
 
 - **OS:** [e.g., macOS 14.2, Ubuntu 22.04, Windows 11]
 - **Python version:** [e.g., 3.12.1]
-- **pkgd version:** [output of `artty --version`]
-
+- **artty version:** [output of `artty --version`]
 
 ## Relevant Logs
 

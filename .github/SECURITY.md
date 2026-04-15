@@ -16,11 +16,9 @@ We take security vulnerabilities seriously. If you discover a security issue, pl
 
 **Please DO NOT report security vulnerabilities through public GitHub issues.**
 
-Instead, please report them via one of these methods:
+Instead, please report them via:
 
-1. **Email**: Send an email to `dev@divisionseven.com` with subject line "SECURITY: Vulnerability Report"
-
-2. **GitHub Security Advisories**: Use GitHub's [private vulnerability reporting](https://github.com/divisionseven/artty/security/advisories/new) feature
+[GitHub's Security Advisories](https://github.com/divisionseven/artty/security/advisories/new) feature. This allows us to discuss and fix the issue privately before disclosure.
 
 ### What to Include
 
