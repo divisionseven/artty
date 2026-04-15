@@ -115,9 +115,9 @@ artty --help
 ```
 
 <div align="center">
-  <picture>
-    <a href="docs/assets/demo_images/outputs/screenshots/artty_demo_help.png"><img src="docs/assets/demo_images/outputs/screenshots/artty_demo_help.png" alt="artty" width="100%"></a>
-  </picture>
+  <a href="docs/assets/demo_images/outputs/screenshots/artty_demo_help.png">
+    <img src="docs/assets/demo_images/outputs/screenshots/artty_demo_help.png" alt="artty help screen" width="100%"/>
+  </a>
 </div>
 
 #### `artty --help` Output
@@ -616,5 +616,5 @@ Distributed under the MIT License. See [LICENSE][license-link] for more informat
 [vscode-link]: https://code.visualstudio.com
 
 <!-- Acknowledgements -->
-[pillow-link]: https://python-pillow.org/
-[click-link]: https://click.palletsprojects.com/
+[pillow-link]: https://github.com/python-pillow/Pillow
+[click-link]: https://github.com/pallets/click
