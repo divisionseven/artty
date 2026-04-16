@@ -1,8 +1,8 @@
 <div align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/assets/brand/logo_white.svg">
-    <source media="(prefers-color-scheme: light)" srcset="docs/assets/brand/logo_black.svg">
-    <img src="docs/assets/brand/logo_white.svg" alt="artty" width="500">
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/divisionseven/artty/raw/main/docs/assets/brand/logo_white.svg">
+    <source media="(prefers-color-scheme: light)" srcset="https://github.com/divisionseven/artty/raw/main/docs/assets/brand/logo_black.svg">
+    <img src="https://github.com/divisionseven/artty/raw/main/docs/assets/brand/logo_white.svg" alt="artty" width="500">
   </picture>
 
 # arTTY
@@ -116,7 +116,7 @@ artty --help
 
 <div align="center">
   <a href="docs/assets/demo_images/outputs/screenshots/artty_demo_help.png">
-    <img src="docs/assets/demo_images/outputs/screenshots/artty_demo_help.png" alt="artty help screen" width="100%"/>
+    <img src="https://github.com/divisionseven/artty/raw/main/docs/assets/demo_images/outputs/screenshots/artty_demo_help.png" alt="artty help screen" width="100%"/>
   </a>
 </div>
 
@@ -187,8 +187,8 @@ artty nasa.jpeg --hide-paths
     <th align="center">arTTY Output</th>
   </tr>
   <tr>
-    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/inputs/nasa.jpeg"><img src="docs/assets/demo_images/inputs/nasa.jpeg" alt="nasa" width="100%"/></a></td>
-    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/nasa_color_demo.png"><img src="docs/assets/demo_images/outputs/screenshots/nasa_color_demo.png" alt="nasa output" width="100%"/></a></td>
+    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/inputs/nasa.jpeg"><img src="https://github.com/divisionseven/artty/raw/main/docs/assets/demo_images/inputs/nasa.jpeg" alt="nasa" width="100%"/></a></td>
+    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/nasa_color_demo.png"><img src="https://github.com/divisionseven/artty/raw/main/docs/assets/demo_images/outputs/screenshots/nasa_color_demo.png" alt="nasa output" width="100%"/></a></td>
   </tr>
 </table>
 <p align="center"><sub>Credit: <a href="https://www.nasa.gov" target="_blank">NASA</a> | Brand logos shown for demonstration purposes only. All trademarks are property of their respective owners.</sub></p>
@@ -206,8 +206,8 @@ artty JB1.jpeg -w 150 --hide-paths
     <th align="center">arTTY Output</th>
   </tr>
   <tr>
-    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/inputs/JB1.jpeg"><img src="docs/assets/demo_images/inputs/JB1.jpeg" alt="JB1" width="100%"/></a></td>
-    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/jb1_color_demo.png"><img src="docs/assets/demo_images/outputs/screenshots/jb1_color_demo.png" alt="JB1 output" width="100%"/></a></td>
+    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/inputs/JB1.jpeg"><img src="https://github.com/divisionseven/artty/raw/main/docs/assets/demo_images/inputs/JB1.jpeg" alt="JB1" width="100%"/></a></td>
+    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/jb1_color_demo.png"><img src="https://github.com/divisionseven/artty/raw/main/docs/assets/demo_images/outputs/screenshots/jb1_color_demo.png" alt="JB1 output" width="100%"/></a></td>
   </tr>
 </table>
 <p align="center"><sub>Credit: © Division 7 | All trademarks are property of their respective owners.</sub></p>
@@ -225,8 +225,8 @@ artty JB3.jpeg -w 175 --hide-paths
     <th align="center">arTTY Output</th>
   </tr>
   <tr>
-    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/inputs/JB3.jpeg"><img src="docs/assets/demo_images/inputs/JB3.jpeg" alt="JB3" width="100%"/></a></td>
-    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/jb3_color_demo.png"><img src="docs/assets/demo_images/outputs/screenshots/jb3_color_demo.png" alt="JB3 output" width="100%"/></a></td>
+    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/inputs/JB3.jpeg"><img src="https://github.com/divisionseven/artty/raw/main/docs/assets/demo_images/inputs/JB3.jpeg" alt="JB3" width="100%"/></a></td>
+    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/jb3_color_demo.png"><img src="https://github.com/divisionseven/artty/raw/main/docs/assets/demo_images/outputs/screenshots/jb3_color_demo.png" alt="JB3 output" width="100%"/></a></td>
   </tr>
 </table>
 <p align="center"><sub>Credit: © Division 7 | All trademarks are property of their respective owners.</sub></p>
@@ -246,8 +246,8 @@ artty logo.png -w 200 --hide-paths
     <th align="center">arTTY Output</th>
   </tr>
   <tr>
-    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/inputs/logo.png"><img src="docs/assets/demo_images/inputs/logo.png" alt="logo" width="100%"/></a></td>
-    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/logo_demo.png"><img src="docs/assets/demo_images/outputs/screenshots/logo_demo.png" alt="logo output" width="100%"/></a></td>
+    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/inputs/logo.png"><img src="https://github.com/divisionseven/artty/raw/main/docs/assets/demo_images/inputs/logo.png" alt="logo" width="100%"/></a></td>
+    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/logo_demo.png"><img src="https://github.com/divisionseven/artty/raw/main/docs/assets/demo_images/outputs/screenshots/logo_demo.png" alt="logo output" width="100%"/></a></td>
   </tr>
 </table>
 <p align="center"><sub>Credit: <a href="https://github.com/divisionseven/artty" target="_blank">artty GitHub</a></sub></p>
@@ -265,8 +265,8 @@ artty vscode.png --hide-paths
     <th align="center">arTTY Output</th>
   </tr>
   <tr>
-    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/inputs/vscode.png"><img src="docs/assets/demo_images/inputs/vscode.png" alt="vscode" width="100%"/></a></td>
-    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/vscode_color_demo.png"><img src="docs/assets/demo_images/outputs/screenshots/vscode_color_demo.png" alt="vscode output" width="100%"/></a></td>
+    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/inputs/vscode.png"><img src="https://github.com/divisionseven/artty/raw/main/docs/assets/demo_images/inputs/vscode.png" alt="vscode" width="100%"/></a></td>
+    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/vscode_color_demo.png"><img src="https://github.com/divisionseven/artty/raw/main/docs/assets/demo_images/outputs/screenshots/vscode_color_demo.png" alt="vscode output" width="100%"/></a></td>
   </tr>
 </table>
 <p align="center"><sub>Credit: <a href="https://code.visualstudio.com" target="_blank">Microsoft/VSCode</a> | Brand logos shown for demonstration purposes only. All trademarks are property of their respective owners.</sub></p>
@@ -284,8 +284,8 @@ artty linux.png --hide-paths
     <th align="center">arTTY Output</th>
   </tr>
   <tr>
-    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/inputs/linux.png"><img src="docs/assets/demo_images/inputs/linux.png" alt="linux" width="100%"/></a></td>
-    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/linux_color_demo.png"><img src="docs/assets/demo_images/outputs/screenshots/linux_color_demo.png" alt="linux output" width="100%"/></a></td>
+    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/inputs/linux.png"><img src="https://github.com/divisionseven/artty/raw/main/docs/assets/demo_images/inputs/linux.png" alt="linux" width="100%"/></a></td>
+    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/linux_color_demo.png"><img src="https://github.com/divisionseven/artty/raw/main/docs/assets/demo_images/outputs/screenshots/linux_color_demo.png" alt="linux output" width="100%"/></a></td>
   </tr>
 </table>
 <p align="center"><sub>Credit: <a href="https://www.linux.org" target="_blank">Linux</a> | Brand logos shown for demonstration purposes only. All trademarks are property of their respective owners.</sub></p>
@@ -303,8 +303,8 @@ artty github_full.png -w 200 --no-color --hide-paths
     <th align="center">arTTY Plain TXT Output</th>
   </tr>
   <tr>
-    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/inputs/github_full.png"><img src="docs/assets/demo_images/inputs/github_full.png" alt="github" width="100%"/></a></td>
-    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/github_full_plain_demo.png"><img src="docs/assets/demo_images/outputs/screenshots/github_full_plain_demo.png" alt="github output" width="100%"/></a></td>
+    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/inputs/github_full.png"><img src="https://github.com/divisionseven/artty/raw/main/docs/assets/demo_images/inputs/github_full.png" alt="github" width="100%"/></a></td>
+    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/github_full_plain_demo.png"><img src="https://github.com/divisionseven/artty/raw/main/docs/assets/demo_images/outputs/screenshots/github_full_plain_demo.png" alt="github output" width="100%"/></a></td>
   </tr>
 </table>
 <p align="center"><sub>Credit: <a href="https://github.com" target="_blank">GitHub</a> | Brand logos shown for demonstration purposes only. All trademarks are property of their respective owners.</sub></p>
@@ -322,8 +322,8 @@ artty pkg-defender.png -w 125 --no-color --hide-paths
     <th align="center">arTTY Plain TXT Output</th>
   </tr>
   <tr>
-    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/inputs/pkg-defender.png"><img src="docs/assets/demo_images/inputs/pkg-defender.png" alt="pkg-defender" width="100%"/></a></td>
-    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/pkgd_plain_demo.png"><img src="docs/assets/demo_images/outputs/screenshots/pkgd_plain_demo.png" alt="pkg-defender output" width="100%"/></a></td>
+    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/inputs/pkg-defender.png"><img src="https://github.com/divisionseven/artty/raw/main/docs/assets/demo_images/inputs/pkg-defender.png" alt="pkg-defender" width="100%"/></a></td>
+    <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/pkgd_plain_demo.png"><img src="https://github.com/divisionseven/artty/raw/main/docs/assets/demo_images/outputs/screenshots/pkgd_plain_demo.png" alt="pkg-defender output" width="100%"/></a></td>
   </tr>
 </table>
 <p align="center"><sub>Credit: <a href="https://github.com/divisionseven/pkg-defender" target="_blank">PKG-Defender GitHub</a> | "Supply-Chain Attack Defense CLI"</sub></p>
@@ -348,9 +348,9 @@ artty arch.png -w 200 --no-color --hide-paths
     <th align="center">arTTY Plain TXT Output</th>
   </tr>
   <tr>
-    <td width="33%" align="center" valign="middle"><a href="docs/assets/demo_images/inputs/arch.png"><img src="docs/assets/demo_images/inputs/arch.png" alt="arch" width="100%"/></a></td>
-    <td width="33%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/arch_color_demo.png"><img src="docs/assets/demo_images/outputs/screenshots/arch_color_demo.png" alt="arch color output" width="100%"/></a></td>
-    <td width="33%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/arch_plain_demo.png"><img src="docs/assets/demo_images/outputs/screenshots/arch_plain_demo.png" alt="arch plain output" width="100%"/></a></td>
+    <td width="33%" align="center" valign="middle"><a href="docs/assets/demo_images/inputs/arch.png"><img src="https://github.com/divisionseven/artty/raw/main/docs/assets/demo_images/inputs/arch.png" alt="arch" width="100%"/></a></td>
+    <td width="33%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/arch_color_demo.png"><img src="https://github.com/divisionseven/artty/raw/main/docs/assets/demo_images/outputs/screenshots/arch_color_demo.png" alt="arch color output" width="100%"/></a></td>
+    <td width="33%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/arch_plain_demo.png"><img src="https://github.com/divisionseven/artty/raw/main/docs/assets/demo_images/outputs/screenshots/arch_plain_demo.png" alt="arch plain output" width="100%"/></a></td>
   </tr>
 </table>
 <p align="center"><sub>Credit: <a href="https://archlinux.org" target="_blank">Arch Linux</a> | Brand logos shown for demonstration purposes only. All trademarks are property of their respective owners.</sub></p>
@@ -373,9 +373,9 @@ artty apple.png -w 80 --no-color --hide-paths
     <th align="center">arTTY Plain TXT Output</th>
   </tr>
   <tr>
-    <td width="33%" align="center" valign="middle"><a href="docs/assets/demo_images/inputs/apple.png"><img src="docs/assets/demo_images/inputs/apple.png" alt="apple" width="100%"/></a></td>
-    <td width="33%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/apple_color_demo.png"><img src="docs/assets/demo_images/outputs/screenshots/apple_color_demo.png" alt="apple color output" width="100%"/></a></td>
-    <td width="33%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/apple_plain_demo.png"><img src="docs/assets/demo_images/outputs/screenshots/apple_plain_demo.png" alt="apple plain output" width="100%"/></a></td>
+    <td width="33%" align="center" valign="middle"><a href="docs/assets/demo_images/inputs/apple.png"><img src="https://github.com/divisionseven/artty/raw/main/docs/assets/demo_images/inputs/apple.png" alt="apple" width="100%"/></a></td>
+    <td width="33%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/apple_color_demo.png"><img src="https://github.com/divisionseven/artty/raw/main/docs/assets/demo_images/outputs/screenshots/apple_color_demo.png" alt="apple color output" width="100%"/></a></td>
+    <td width="33%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/apple_plain_demo.png"><img src="https://github.com/divisionseven/artty/raw/main/docs/assets/demo_images/outputs/screenshots/apple_plain_demo.png" alt="apple plain output" width="100%"/></a></td>
   </tr>
 </table>
 <p align="center"><sub>Credit: <a href="https://www.apple.com" target="_blank">Apple</a> | Brand logos shown for demonstration purposes only. All trademarks are property of their respective owners.</sub></p>
@@ -583,7 +583,7 @@ Distributed under the MIT License. See [LICENSE][license-link] for more informat
 **Last updated:** 2026-04-15
 
 <!-- Badge Links -->
-[pypi-badge-badge]: https://img.shields.io/pypi/v/artty?style=plastic&bg=black&logo=pypi&logoColor=white
+[pypi-badge-badge]: https://img.shields.io/pypi/v/artty?style=plastic&color=black&logo=pypi&logoColor=white
 [pypi-badge-link]: https://pypi.org/project/artty/
 [python-badge-badge]: https://img.shields.io/badge/python-3.10+-blue?logo=python&style=plastic&color=black&logoColor=white
 [python-badge-link]: https://www.python.org/

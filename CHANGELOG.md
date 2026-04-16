@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Replace README image paths with absolute GitHub URLs
+
 ## [0.1.2] - 2026-04-14
 
 ### Added
