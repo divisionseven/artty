@@ -585,7 +585,7 @@ Distributed under the MIT License. See [LICENSE][license-link] for more informat
 <!-- Badge Links -->
 [pypi-badge-badge]: https://img.shields.io/pypi/v/artty?style=plastic&color=black&logo=pypi&logoColor=white
 [pypi-badge-link]: https://pypi.org/project/artty/
-[python-badge-badge]: https://img.shields.io/badge/python-3.10+-blue?logo=python&style=plastic&color=black&logoColor=white
+[python-badge-badge]: https://img.shields.io/pypi/pyversions/artty?logo=python&style=plastic&color=black&logoColor=white
 [python-badge-link]: https://www.python.org/
 [license-badge-badge]: https://img.shields.io/badge/license-MIT-blue?style=plastic&logo=open-source-initiative&color=black&logoColor=white
 [license-badge-link]: https://opensource.org/licenses/MIT
