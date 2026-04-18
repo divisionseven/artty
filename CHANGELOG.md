@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Release automation: tag-based trigger, Windows binary builds, automatic GitHub Release creation
+
 ### Changed
 
 - Replace README image paths with absolute GitHub URLs
