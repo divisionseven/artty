@@ -7,8 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.3] - 2026-04-18
+
 ### Added
 
+- ASCII art logo displayed at top of help output (respects terminal width and NO_COLOR/FORCE_COLOR)
 - Release automation: tag-based trigger, Windows binary builds, automatic GitHub Release creation
 
 ### Changed

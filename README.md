@@ -115,15 +115,15 @@ artty --help
 ```
 
 <div align="center">
-  <a href="docs/assets/demo_images/outputs/screenshots/artty_demo_help.png">
-    <img src="https://github.com/divisionseven/artty/raw/main/docs/assets/demo_images/outputs/screenshots/artty_demo_help.png" alt="artty help screen" width="100%"/>
+  <a href="docs/assets/demo_images/outputs/screenshots/artty_demo_help_v2.png">
+    <img src="https://github.com/divisionseven/artty/raw/main/docs/assets/demo_images/outputs/screenshots/artty_demo_help_v2.png" alt="artty help screen" width="100%"/>
   </a>
 </div>
 
 #### `artty --help` Output
 
 ```bash
-Usage: artty [OPTIONS] [INPUT]
+Usage: artty [OPTIONS] INPUT
 
 artty — Convert images to detailed braille ASCII art.
 
@@ -138,14 +138,13 @@ Features:
 
 Options:
   -o, --output TEXT              Where to save the .txt file. Accepts a full file path or a directory. If a directory is
-                                 given, the filename is derived from the input image name. Defaults to the same directory
-                                 as the input image.
+                                 given, the filename is derived from the input image name. Defaults to the same directory as
+                                 the input image.
   --preview / --no-preview       Print the result to the terminal after saving (default: on).
   --no-save                      Do not write a .txt file — only print to stdout.
-  -w, --width INTEGER RANGE      Output width in braille characters. Height is auto-calculated. (default: 100)
-                                 [10<=x<=500]
-  -t, --threshold INTEGER RANGE  Luminance threshold (0-255). Pixels brighter than this become braille dots. Lower =
-                                 denser, higher = sparser. (default: 50)  [0<=x<=255]
+  -w, --width INTEGER RANGE      Output width in braille characters. Height is auto-calculated. (default: 100)  [10<=x<=500]
+  -t, --threshold INTEGER RANGE  Luminance threshold (0-255). Pixels brighter than this become braille dots. Lower = denser,
+                                 higher = sparser. (default: 50)  [0<=x<=255]
   --padding INTEGER              Pixels of padding around auto-detected content. (default: 30)
   --contrast FLOAT               Contrast enhancement factor. 1.0 = unchanged. (default: 1.0)
   --sharpness FLOAT              Sharpness enhancement factor. 1.0 = unchanged. (default: 1.0)
@@ -161,6 +160,9 @@ Examples:
   artty logo.png -o ~/Desktop/logo.txt -w 120
   artty logo.png --no-color --width 80
   artty logo.png --bg 0 0 0 --boost 1.4
+
+
+  Full documentation: https://github.com/divisionseven/artty#readme Report bugs: https://github.com/divisionseven/artty/issues
 ```
 
 ---
@@ -580,7 +582,7 @@ Distributed under the MIT License. See [LICENSE][license-link] for more informat
 
 ---
 
-**Last updated:** 2026-04-15
+**Last updated:** 2026-04-18
 
 <!-- Badge Links -->
 [pypi-badge-badge]: https://img.shields.io/pypi/v/artty?style=plastic&color=black&logo=pypi&logoColor=white

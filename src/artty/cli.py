@@ -21,7 +21,7 @@ from typing import Any
 import click
 
 from artty import __version__
-from artty.ansi import _supports_ansi
+from artty.ansi import _supports_ansi, get_help_logo
 from artty.converter import image_to_braille
 
 # ANSI escape codes for colored output
@@ -235,6 +235,15 @@ def _custom_format_help(
 
         # Write blank line at top for breathing room
         custom_formatter.write_text("")
+
+        # Add ASCII logo at top of help output
+        # Use sys.stdout.write() directly to bypass Click's formatter wrapping
+        # which would distort the 100-character logo
+        logo = get_help_logo()
+        if logo:
+            sys.stdout.write("\n" + logo)
+            sys.stdout.flush()
+            custom_formatter.write_text("")
 
         # Write usage (no extra indentation - matches pkg-defender format)
         usage_output = self.get_usage(ctx)

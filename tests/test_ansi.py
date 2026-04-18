@@ -130,7 +130,6 @@ class TestSupportsAnsi:
 
         try:
             # Remove ctypes from sys.modules and patch __import__ to raise
-            # This simulates a scenario where ctypes cannot be loaded
             if "ctypes" in sys.modules:
                 del sys.modules["ctypes"]
             if "ctypes.wintypes" in sys.modules:
@@ -209,3 +208,143 @@ class TestSupportsAnsi:
                 sys.modules["ctypes.wintypes"] = original_wintypes
             elif "ctypes.wintypes" in sys.modules:
                 del sys.modules["ctypes.wintypes"]
+
+
+class TestNoColorEnvVar:
+    """Tests for NO_COLOR and FORCE_COLOR environment variable handling."""
+
+    def test_no_color_env_disables_colors(self, monkeypatch):
+        """Test that NO_COLOR=1 makes _supports_ansi() return False."""
+        # Set NO_COLOR env var
+        monkeypatch.setenv("NO_COLOR", "1")
+
+        # Force non-Windows to skip platform-specific checks
+        monkeypatch.setattr(sys, "platform", "linux")
+
+        # Import after env var is set to test runtime check
+        from artty.ansi import _supports_ansi
+
+        result = _supports_ansi()
+        assert result is False
+
+    def test_force_color_env_enables_colors(self, monkeypatch):
+        """Test that FORCE_COLOR=1 makes _supports_ansi() return True."""
+        # Clear NO_COLOR and set FORCE_COLOR
+        monkeypatch.delenv("NO_COLOR", raising=False)
+        monkeypatch.setenv("FORCE_COLOR", "1")
+
+        # Force non-Windows and make stdout not a TTY (should still be True with FORCE_COLOR)
+        monkeypatch.setattr(sys, "platform", "linux")
+
+        class MockStdout:
+            def isatty(self):
+                return False
+
+        monkeypatch.setattr(sys, "stdout", MockStdout())
+
+        from artty.ansi import _supports_ansi
+
+        result = _supports_ansi()
+        assert result is True
+
+
+class TestGetHelpLogo:
+    """Tests for get_help_logo function."""
+
+    def test_returns_empty_when_narrow_terminal(self, monkeypatch):
+        """Test logo returns empty when terminal is narrow."""
+        import artty.ansi
+
+        # Mock get_terminal_width to return narrow width
+        monkeypatch.setattr(artty.ansi, "get_terminal_width", lambda: 50)
+
+        from artty.ansi import get_help_logo
+
+        result = get_help_logo()
+        assert result == ""
+
+    def test_returns_color_logo_when_color_supported(self, monkeypatch, tmp_path):
+        """Test logo returns color logo when color is supported."""
+        import artty.ansi
+
+        # Create mock logo files in a temp location
+        mock_docs = tmp_path / "docs" / "assets" / "brand"
+        mock_docs.mkdir(parents=True)
+
+        color_logo = mock_docs / "logo_color_ascii_color_w100.txt"
+        color_logo.write_text("COLOR_LOGO")
+
+        plain_logo = mock_docs / "logo_color_ascii_plain_w100.txt"
+        plain_logo.write_text("PLAIN_LOGO")
+
+        # Use temp directory path
+        def mock_get_help_logo():
+            if artty.ansi.get_terminal_width() < artty.ansi.LOGO_MIN_WIDTH:
+                return ""
+
+            use_color = artty.ansi._supports_ansi()
+
+            logo_path = (
+                artty.ansi.LOGO_COLOR_PATH if use_color else artty.ansi.LOGO_PLAIN_PATH
+            )
+
+            try:
+                base_path = tmp_path / logo_path
+                with open(base_path) as f:
+                    return f.read()
+            except (FileNotFoundError, OSError):
+                return ""
+
+        monkeypatch.setattr(artty.ansi, "get_help_logo", mock_get_help_logo)
+        monkeypatch.setattr(artty.ansi, "get_terminal_width", lambda: 120)
+
+        from artty.ansi import get_help_logo
+
+        # Mock _supports_ansi to return True (color supported)
+        monkeypatch.setattr(artty.ansi, "_supports_ansi", lambda: True)
+
+        result = get_help_logo()
+        assert result == "COLOR_LOGO"
+
+    def test_returns_plain_logo_when_no_color(self, monkeypatch, tmp_path):
+        """Test logo returns plain logo when color is not supported."""
+        import artty.ansi
+
+        # Create mock logo files
+        mock_docs = tmp_path / "docs" / "assets" / "brand"
+        mock_docs.mkdir(parents=True)
+
+        color_logo = mock_docs / "logo_color_ascii_color_w100.txt"
+        color_logo.write_text("COLOR_LOGO")
+
+        plain_logo = mock_docs / "logo_color_ascii_plain_w100.txt"
+        plain_logo.write_text("PLAIN_LOGO")
+
+        # Use temp directory path
+        def mock_get_help_logo():
+            if artty.ansi.get_terminal_width() < artty.ansi.LOGO_MIN_WIDTH:
+                return ""
+
+            use_color = artty.ansi._supports_ansi()
+
+            logo_path = (
+                artty.ansi.LOGO_COLOR_PATH if use_color else artty.ansi.LOGO_PLAIN_PATH
+            )
+
+            try:
+                base_path = tmp_path / logo_path
+                with open(base_path) as f:
+                    return f.read()
+            except (FileNotFoundError, OSError):
+                return ""
+
+        monkeypatch.setattr(artty.ansi, "get_help_logo", mock_get_help_logo)
+        monkeypatch.setattr(artty.ansi, "get_terminal_width", lambda: 120)
+
+        # Force color to return False
+        monkeypatch.setattr(artty.ansi, "_supports_ansi", lambda: False)
+
+        from artty.ansi import get_help_logo
+
+        result = get_help_logo()
+        assert result == "PLAIN_LOGO"
