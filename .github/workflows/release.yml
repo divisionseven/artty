@@ -7,10 +7,8 @@
 #
 # Pipeline (jobs run in dependency order):
 #
-#   validate ──┬──► ci ──► build ──► github-release
-#              │                          │
-#              │                          └──► (publish workflows trigger here
-#              │                                via `release: published` event)
+#   validate ──┬──► ci ──► build ──► github-release ──► publish
+#              │
 #              └── (gates everything: version files + changelog must be in order)
 #
 # ──────────────────────────────────────────────────────────────────────────────
@@ -222,3 +220,36 @@ jobs:
           files: |
             /tmp/release-assets/dist/**
           fail_on_unmatched_files: false
+
+  # ── Job 5: Publish to PyPI ─────────────────────────────────────────────────
+  # Builds and publishes the package to PyPI. Runs after github-release succeeds.
+  publish:
+    name: Build & Publish to PyPI
+    runs-on: ubuntu-latest
+    needs: github-release
+    environment: pypi
+
+    permissions:
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install build backend
+        run: pip install --upgrade build twine
+
+      - name: Build distributions
+        run: python -m build
+
+      - name: Check distributions
+        run: twine check dist/*
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          print-hash: true
