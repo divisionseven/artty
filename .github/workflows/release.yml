@@ -115,7 +115,9 @@ jobs:
             found && $0 ~ "^## \\[" { found=0 }
             found { print }
           ' CHANGELOG.md)
-          echo "body=$CHANGELOG" >> $GITHUB_OUTPUT
+          echo "body<<EOF" >> $GITHUB_OUTPUT
+          echo "$CHANGELOG" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
