@@ -267,41 +267,45 @@ class TestGetHelpLogo:
         """Test logo returns color logo when color is supported."""
         import artty.ansi
 
-        # Create mock logo files in a temp location
-        mock_docs = tmp_path / "docs" / "assets" / "brand"
-        mock_docs.mkdir(parents=True)
+        # Create mock logo files in a temp location simulating package dir
+        mock_data = tmp_path / "data"
+        mock_data.mkdir(parents=True)
 
-        color_logo = mock_docs / "logo_color_ascii_color_w100.txt"
+        color_logo = mock_data / "logo_color.txt"
         color_logo.write_text("COLOR_LOGO")
 
-        plain_logo = mock_docs / "logo_color_ascii_plain_w100.txt"
+        plain_logo = mock_data / "logo_plain.txt"
         plain_logo.write_text("PLAIN_LOGO")
 
-        # Use temp directory path
+        # Set up mocks first, THEN define function that uses the mocked values
+        monkeypatch.setattr(artty.ansi, "get_terminal_width", lambda: 120)
+        monkeypatch.setattr(artty.ansi, "_supports_ansi", lambda: True)
+
+        # Define mock that looks up constants fresh from module at call time
         def mock_get_help_logo():
-            if artty.ansi.get_terminal_width() < artty.ansi.LOGO_MIN_WIDTH:
+            # Look up at call time, not definition time
+            min_width = artty.ansi.LOGO_MIN_WIDTH
+            color_path = artty.ansi.LOGO_COLOR_PATH
+            plain_path = artty.ansi.LOGO_PLAIN_PATH
+
+            if artty.ansi.get_terminal_width() < min_width:
                 return ""
 
             use_color = artty.ansi._supports_ansi()
-
-            logo_path = (
-                artty.ansi.LOGO_COLOR_PATH if use_color else artty.ansi.LOGO_PLAIN_PATH
-            )
+            logo_path = color_path if use_color else plain_path
 
             try:
+                # Use tmp_path as package dir
                 base_path = tmp_path / logo_path
-                with open(base_path) as f:
+                with open(base_path, encoding="utf-8") as f:
                     return f.read()
-            except (FileNotFoundError, OSError):
+            except (FileNotFoundError, OSError, UnicodeDecodeError):
                 return ""
 
+        # Replace the function
         monkeypatch.setattr(artty.ansi, "get_help_logo", mock_get_help_logo)
-        monkeypatch.setattr(artty.ansi, "get_terminal_width", lambda: 120)
 
         from artty.ansi import get_help_logo
-
-        # Mock _supports_ansi to return True (color supported)
-        monkeypatch.setattr(artty.ansi, "_supports_ansi", lambda: True)
 
         result = get_help_logo()
         assert result == "COLOR_LOGO"
@@ -311,38 +315,42 @@ class TestGetHelpLogo:
         import artty.ansi
 
         # Create mock logo files
-        mock_docs = tmp_path / "docs" / "assets" / "brand"
-        mock_docs.mkdir(parents=True)
+        mock_data = tmp_path / "data"
+        mock_data.mkdir(parents=True)
 
-        color_logo = mock_docs / "logo_color_ascii_color_w100.txt"
+        color_logo = mock_data / "logo_color.txt"
         color_logo.write_text("COLOR_LOGO")
 
-        plain_logo = mock_docs / "logo_color_ascii_plain_w100.txt"
+        plain_logo = mock_data / "logo_plain.txt"
         plain_logo.write_text("PLAIN_LOGO")
 
-        # Use temp directory path
+        # Set up mocks first
+        monkeypatch.setattr(artty.ansi, "get_terminal_width", lambda: 120)
+        monkeypatch.setattr(artty.ansi, "_supports_ansi", lambda: False)
+
+        # Define mock that looks up constants fresh from module at call time
         def mock_get_help_logo():
-            if artty.ansi.get_terminal_width() < artty.ansi.LOGO_MIN_WIDTH:
+            # Look up at call time
+            min_width = artty.ansi.LOGO_MIN_WIDTH
+            color_path = artty.ansi.LOGO_COLOR_PATH
+            plain_path = artty.ansi.LOGO_PLAIN_PATH
+
+            if artty.ansi.get_terminal_width() < min_width:
                 return ""
 
             use_color = artty.ansi._supports_ansi()
-
-            logo_path = (
-                artty.ansi.LOGO_COLOR_PATH if use_color else artty.ansi.LOGO_PLAIN_PATH
-            )
+            logo_path = color_path if use_color else plain_path
 
             try:
+                # Use tmp_path as package dir
                 base_path = tmp_path / logo_path
-                with open(base_path) as f:
+                with open(base_path, encoding="utf-8") as f:
                     return f.read()
-            except (FileNotFoundError, OSError):
+            except (FileNotFoundError, OSError, UnicodeDecodeError):
                 return ""
 
+        # Replace the function
         monkeypatch.setattr(artty.ansi, "get_help_logo", mock_get_help_logo)
-        monkeypatch.setattr(artty.ansi, "get_terminal_width", lambda: 120)
-
-        # Force color to return False
-        monkeypatch.setattr(artty.ansi, "_supports_ansi", lambda: False)
 
         from artty.ansi import get_help_logo
 

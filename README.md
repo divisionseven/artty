@@ -5,7 +5,7 @@
 
 # arTTY
 
-### Convert any image to braille ASCII art directly in your terminal
+### Convert any image into detailed, full-color ASCII art directly in your terminal
 
 [![PyPI Version][pypi-badge-badge]][pypi-badge-link]
 [![Python Versions][python-badge-badge]][python-badge-link]
@@ -18,11 +18,13 @@
 
 </div>
 
-## What is `artty`?
+## What is arTTY?
 
 `artty` is a command-line tool and Python library that converts images to Unicode braille ASCII art with 24-bit ANSI color support. It preserves image contrast and sharpness while producing detailed, scanable output that works in any modern terminal on macOS, Linux, or Windows.
 
 Whether you're building a terminal-based dashboard, creating visual presentations, or just having fun with ASCII art, `artty` gives you professional results with minimal configuration.
+
+Bring some art to your TTY with arTTY.
 
 ## Features
 

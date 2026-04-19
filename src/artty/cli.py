@@ -106,7 +106,7 @@ def resolve_output_path(
     auto_name = f"{input_stem}_ascii_{mode_tag}_w{width}.txt"
 
     if output is None:
-        return os.path.join(os.path.dirname(os.path.abspath(input_path)), auto_name)
+        return None
 
     expanded = os.path.expanduser(output)
 

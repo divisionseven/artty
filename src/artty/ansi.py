@@ -74,8 +74,8 @@ def get_terminal_width() -> int:
 
 
 LOGO_MIN_WIDTH = 105
-LOGO_COLOR_PATH = "docs/assets/brand/logo_color_ascii_color_w100.txt"
-LOGO_PLAIN_PATH = "docs/assets/brand/logo_color_ascii_plain_w100.txt"
+LOGO_COLOR_PATH = "data/logo_color.txt"
+LOGO_PLAIN_PATH = "data/logo_plain.txt"
 
 
 def get_help_logo() -> str:
@@ -97,10 +97,8 @@ def get_help_logo() -> str:
 
     # Load and return logo content
     try:
-        # logo files are in the project root, same as artty package
-        base_path = os.path.join(
-            os.path.dirname(os.path.dirname(os.path.dirname(__file__))), logo_path
-        )
+        # logo files are in the artty package data directory
+        base_path = os.path.join(os.path.dirname(__file__), logo_path)
         with open(base_path, encoding="utf-8") as f:
             return f.read()
     except (FileNotFoundError, OSError, UnicodeDecodeError):

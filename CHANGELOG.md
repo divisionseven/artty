@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.6] - 2026-04-19
+
+### Fixed
+
+- Man page now included in package installation via `pyproject.toml` `data_files`; man page version updated to current
+- ASCII logo txt file now included in package installation via `pyproject.toml` `data_files`
+
 ## [0.1.5] - 2026-04-19
 
 ### Fixed
