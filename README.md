@@ -1,9 +1,7 @@
 <div align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/divisionseven/artty/raw/main/docs/assets/brand/logo_white.svg">
-    <source media="(prefers-color-scheme: light)" srcset="https://github.com/divisionseven/artty/raw/main/docs/assets/brand/logo_black.svg">
-    <img src="https://github.com/divisionseven/artty/raw/main/docs/assets/brand/logo_white.svg" alt="artty" width="500">
-  </picture>
+  <a href="docs/assets/brand/logo_color.png">
+    <img src="https://github.com/divisionseven/artty/raw/main/docs/assets/brand/logo_color.png" alt="artty color logo" width="550"/>
+  </a>
 
 # arTTY
 
@@ -160,9 +158,6 @@ Examples:
   artty logo.png -o ~/Desktop/logo.txt -w 120
   artty logo.png --no-color --width 80
   artty logo.png --bg 0 0 0 --boost 1.4
-
-
-  Full documentation: https://github.com/divisionseven/artty#readme Report bugs: https://github.com/divisionseven/artty/issues
 ```
 
 ---

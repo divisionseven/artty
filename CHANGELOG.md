@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.3] - 2026-04-18
 
+### Fixed
+
+- Handle Unicode encoding errors on Windows CI when displaying ASCII art logo in help output
+
 ### Added
 
 - ASCII art logo displayed at top of help output (respects terminal width and NO_COLOR/FORCE_COLOR)

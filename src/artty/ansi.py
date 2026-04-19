@@ -101,7 +101,7 @@ def get_help_logo() -> str:
         base_path = os.path.join(
             os.path.dirname(os.path.dirname(os.path.dirname(__file__))), logo_path
         )
-        with open(base_path) as f:
+        with open(base_path, encoding="utf-8") as f:
             return f.read()
-    except (FileNotFoundError, OSError):
+    except (FileNotFoundError, OSError, UnicodeDecodeError):
         return ""

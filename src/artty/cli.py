@@ -241,8 +241,12 @@ def _custom_format_help(
         # which would distort the 100-character logo
         logo = get_help_logo()
         if logo:
-            sys.stdout.write("\n" + logo)
-            sys.stdout.flush()
+            try:
+                sys.stdout.write("\n" + logo)
+                sys.stdout.flush()
+            except UnicodeEncodeError:
+                # Gracefully degrade on encoding failure (e.g., Windows CI with redirected stdout)
+                pass
             custom_formatter.write_text("")
 
         # Write usage (no extra indentation - matches pkg-defender format)
