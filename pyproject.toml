@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "artty"
-version = "0.1.3"
+version = "0.1.4"
 description = "Convert any image to Unicode braille ASCII art with 24-bit ANSI color support — directly in your terminal"
 readme = "README.md"
 requires-python = ">=3.10"

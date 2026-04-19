@@ -7,11 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.1.3] - 2026-04-18
+## [0.1.4] - 2026-04-19
 
 ### Fixed
 
 - Handle Unicode encoding errors on Windows CI when displaying ASCII art logo in help output
+
+## [0.1.3] - 2026-04-18
 
 ### Added
 
