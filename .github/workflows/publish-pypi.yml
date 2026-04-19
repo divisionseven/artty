@@ -1,0 +1,55 @@
+# ──────────────────────────────────────────────────────────────────────────────
+# .github/workflows/publish-pypi.yml
+#
+# Publish to PyPI — triggered by GitHub Release publish
+# ──────────────────────────────────────────────────────────────────────────────
+# Auth: PyPI Trusted Publishing (OIDC) — no API token or secret required.
+#
+# One-time setup on PyPI:
+#   1. https://pypi.org/manage/account/publishing/  →  Add trusted publisher
+#        Owner:    <your GitHub username or org>
+#        Repo:     <repo name>
+#        Workflow: publish-pypi.yml
+#        Env:      pypi
+#   2. Create a 'pypi' Environment in this repo:
+#        Settings → Environments → New environment → name it 'pypi'
+#   Repeat on test.pypi.org if you want TestPyPI support.
+# ──────────────────────────────────────────────────────────────────────────────
+
+name: 🐍 Publish — PyPI
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  id-token: write # required for OIDC Trusted Publishing
+
+jobs:
+  publish:
+    name: Build & Publish to PyPI
+    runs-on: ubuntu-latest
+    environment: pypi
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install build backend
+        run: pip install --upgrade build twine
+
+      - name: Build distributions
+        run: python -m build
+
+      - name: Verify distributions
+        run: twine check dist/*
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          print-hash: true
+          # repository-url: https://test.pypi.org/legacy/   # ← uncomment for TestPyPI

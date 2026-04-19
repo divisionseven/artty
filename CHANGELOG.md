@@ -9,8 +9,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.6] - 2026-04-19
 
+### Added
+
+- `.github/scripts/` directory with 3 helper scripts: `check-version.py`, `extract-changelog.py`, `build-release-notes.py`
+- New `publish-pypi.yml` workflow for separated PyPI publishing
+- Logo configuration for release automation: `LOGO_LIGHT`, `LOGO_DARK`, `LOGO_WIDTH` environment variables
+
+### Changed
+
+- CI workflow (`ci.yml`) now has separated lint and test jobs with `workflow_call` support for reusable workflows
+- Release workflow (`release.yml`) now includes a validation job and integrates with `build-release-notes.py`
+
 ### Fixed
 
+- Codecov action input now uses `files` instead of `file` (corrected action input name)
 - Man page now included in package installation via `pyproject.toml` `data_files`; man page version updated to current
 - ASCII logo txt file now included in package installation via `pyproject.toml` `data_files`
 

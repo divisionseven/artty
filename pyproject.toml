@@ -47,7 +47,7 @@ artty = "artty.cli:main"
 include-package-data = true
 
 [tool.setuptools.package-data]
-artty = ["data/*.txt"]
+artty = ["data/*.txt", "completions/*"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
