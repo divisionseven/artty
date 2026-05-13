@@ -1,20 +1,23 @@
 <div align="center">
   <a href="docs/assets/brand/logo_color.png">
-    <img src="https://github.com/divisionseven/artty/raw/main/docs/assets/brand/logo_color.png" alt="artty color logo" width="550"/>
+    <img src="https://github.com/divisionseven/artty/raw/main/docs/assets/brand/logo_color.png" alt="arTTY color logo" width="550"/>
   </a>
 
 # arTTY
 
 ### Convert any image into detailed, full-color ASCII art directly in your terminal
 
-[![PyPI Version][pypi-badge-badge]][pypi-badge-link]
-[![Python Versions][python-badge-badge]][python-badge-link]
-[![License: MIT][license-badge-badge]][license-badge-link]
-[![Codecov][codecov-badge-badge]][codecov-badge-link]
-[![CI Build][ci-badge-badge]][ci-badge-link]
+[![License: MIT][license-badge-icon]][license-badge-link]
+[![Python Versions][python-badge-icon]][python-badge-link]
+[![Codecov][codecov-badge-icon]][codecov-badge-link]
+[![CI Build][ci-badge-icon]][ci-badge-link]
+
+[![PyPI Version][pypi-version-badge-icon]][pypi-badge-link]
+[![PyPI - Downloads][pypi-downloads-badge-icon]][pypi-badge-link]
 
 <p>
-  <a href="docs/index.md">Documentation</a> &nbsp;·&nbsp; <a href="#-demo">Demo</a> &nbsp;·&nbsp; <a href="#-installation">Install</a> &nbsp;·&nbsp; <a href="https://github.com/divisionseven/artty/issues">Open an Issue</a> &nbsp;·&nbsp; <a href="https://github.com/divisionseven/artty/discussions">Join the Conversation</a>
+  <a href="docs/index.md">📖 Documentation Index</a> &nbsp;·&nbsp; <a href="https://github.com/divisionseven/artty/issues">🐛 Open an Issue</a> &nbsp;·&nbsp; <a href="https://github.com/divisionseven/artty/discussions">💬 Join the Conversation</a>
+</p>
 
 </div>
 
@@ -24,18 +27,18 @@
 
 Whether you're building a terminal-based dashboard, creating visual presentations, or just having fun with ASCII art, `artty` gives you professional results with minimal configuration.
 
-Bring some art to your TTY with arTTY.
+**Bring some art to your TTY with arTTY.**
 
-## Features
+## Features Overview
 
 | Feature                       | Description                                                                          |
-|-------------------------------|--------------------------------------------------------------------------------------|
-| ⚡  **Unicode Braille Output** | Uses braille characters (U+2800–U+28FF) for efficient 2×4 pixel cell representation  |
-| 🎨  **24-bit ANSI Color**     | Embedded color codes sample only from lit pixels, preventing dark edge contamination |
-| 🖥️  **Cross-Platform**        | Works on macOS, Linux, and Windows with VT support                                   |
-| 📐  **Preserves Contrast**    | Advanced threshold and sharpness controls maintain image definition                  |
-| ⚙️  **Fully Configurable**    | Adjustable width, threshold, contrast, sharpness, and padding                        |
-| 🔧  **Python API**            | Import `image_to_braille` directly in your own code                                  |
+| ----------------------------- | ------------------------------------------------------------------------------------ |
+| ⚡️  **Unicode Braille Output** | Uses braille characters (U+2800–U+28FF) for efficient 2×4 pixel cell representation  |
+| 🎨  **24-bit ANSI Color**      | Embedded color codes sample only from lit pixels, preventing dark edge contamination |
+| 🖥️  **Cross-Platform**         | Works on macOS, Linux, and Windows with VT support                                   |
+| 📐  **Preserves Contrast**     | Advanced threshold and sharpness controls maintain image definition                  |
+| ⚙️  **Fully Configurable**     | Adjustable width, threshold, contrast, sharpness, and padding                        |
+| 🔧  **Python Library**         | Import `image_to_braille` directly in your own code                                  |
 
 ---
 
@@ -164,12 +167,17 @@ Examples:
 
 ---
 
-## Demo Images
+## Demo Conversion Examples
+
+> [!Tip]
+> **The terminal theme used for the demos is very dark, images may appear dim/dark in the split-view below (especially on mobile).**
+>
+> **Click / tap images to view in fullscreen.**
 
 > [!Note]
 > All demo screenshots were captured using the [Ghostty][ghostty-link] Terminal, which supports full TrueColor (24-bit) color output. Other terminal emulators that support TrueColor include [iTerm2][iterm2-link], [Kitty][kitty-link], [Alacritty][alacritty-link], and [WezTerm][wezterm-link], and various others. arTTY has currently been tested with both the [Ghostty][ghostty-link] and the [Visual Studio Code][vscode-link] integrated terminal.
 >
-> If you use arTTY with another terminal emulator, please [open an issue][issues-link] to report its performance.
+> If you use arTTY with another terminal emulator, **please [open an issue][issues-link] to report its performance.**
 
 ### Full-Color JPEG Conversions
 
@@ -192,7 +200,7 @@ artty nasa.jpeg --hide-paths
 </table>
 <p align="center"><sub>Credit: <a href="https://www.nasa.gov" target="_blank">NASA</a> | Brand logos shown for demonstration purposes only. All trademarks are property of their respective owners.</sub></p>
 
-#### Large Color JPEG Photograph
+#### Large Color JPEG Photograph 1
 
 ```bash
 # Convert a JPEG image to 150-character width braille art
@@ -211,7 +219,7 @@ artty JB1.jpeg -w 150 --hide-paths
 </table>
 <p align="center"><sub>Credit: © Division 7 | All trademarks are property of their respective owners.</sub></p>
 
-#### Large Color JEPG Photograph
+#### Large Color JEPG Photograph 2
 
 ```bash
 # Convert a JPEG image to 175-character width braille art
@@ -230,7 +238,7 @@ artty JB3.jpeg -w 175 --hide-paths
 </table>
 <p align="center"><sub>Credit: © Division 7 | All trademarks are property of their respective owners.</sub></p>
 
-### PNG Logos (with transparency)
+### PNG Logos (With Transparency)
 
 #### arTTY Logo
 
@@ -249,7 +257,7 @@ artty logo.png -w 200 --hide-paths
     <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/logo_demo.png"><img src="https://github.com/divisionseven/artty/raw/main/docs/assets/demo_images/outputs/screenshots/logo_demo.png" alt="logo output" width="100%"/></a></td>
   </tr>
 </table>
-<p align="center"><sub>Credit: <a href="https://github.com/divisionseven/artty" target="_blank">artty GitHub</a></sub></p>
+<p align="center"><sub>Credit: <a href="https://github.com/divisionseven/artty" target="_blank">Division 7 - arTTY GitHub</a></sub></p>
 
 #### Visual Studio Code Logo
 
@@ -268,7 +276,7 @@ artty vscode.png --hide-paths
     <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/vscode_color_demo.png"><img src="https://github.com/divisionseven/artty/raw/main/docs/assets/demo_images/outputs/screenshots/vscode_color_demo.png" alt="vscode output" width="100%"/></a></td>
   </tr>
 </table>
-<p align="center"><sub>Credit: <a href="https://code.visualstudio.com" target="_blank">Microsoft/VSCode</a> | Brand logos shown for demonstration purposes only. All trademarks are property of their respective owners.</sub></p>
+<p align="center"><sub>Credit: <a href="https://code.visualstudio.com" target="_blank">Microsoft / Visual Studio Code</a> | Brand logos shown for demonstration purposes only. All trademarks are property of their respective owners.</sub></p>
 
 #### Linux "Tux" Logo
 
@@ -288,6 +296,8 @@ artty linux.png --hide-paths
   </tr>
 </table>
 <p align="center"><sub>Credit: <a href="https://www.linux.org" target="_blank">Linux</a> | Brand logos shown for demonstration purposes only. All trademarks are property of their respective owners.</sub></p>
+
+### Plain Text Conversion Demos (With `--no-color` Flag)
 
 #### GitHub White Logo
 
@@ -325,9 +335,7 @@ artty pkg-defender.png -w 125 --no-color --hide-paths
     <td width="50%" align="center" valign="middle"><a href="docs/assets/demo_images/outputs/screenshots/pkgd_plain_demo.png"><img src="https://github.com/divisionseven/artty/raw/main/docs/assets/demo_images/outputs/screenshots/pkgd_plain_demo.png" alt="pkg-defender output" width="100%"/></a></td>
   </tr>
 </table>
-<p align="center"><sub>Credit: <a href="https://github.com/divisionseven/pkg-defender" target="_blank">PKG-Defender GitHub</a> | "Supply-Chain Attack Defense CLI"</sub></p>
-
-### Conversions With and Without Color Embedding
+<p align="center"><sub>Credit: <a href="https://github.com/divisionseven/pkg-defender" target="_blank">Division 7 - PKG-Defender GitHub</a> | "Supply-Chain Attack Defense CLI" Coming Soon...</sub></p>
 
 #### Arch Linux Logo
 
@@ -383,9 +391,9 @@ artty apple.png -w 80 --no-color --hide-paths
 
 ## Technical Documentation
 
-For detailed technical information, see the [Documentation Index][docs-index-link], which provides:
+For detailed technical information, see our [Documentation Index][docs-index-link], which provides:
 
-- [Algorithm][docs-algorithm-link] — How Unicode Braille rendering works
+- [Algorithm][docs-algorithm-link] — How our Unicode Braille rendering works
 - [CLI & API Reference][docs-reference-link] — Complete command-line options and Python library examples
 - [Examples][docs-examples-link] — Practical usage examples
 
@@ -394,7 +402,7 @@ For detailed technical information, see the [Documentation Index][docs-index-lin
 ## Configuration
 
 | Category         | Option                       | Type    | Default                             | Description                                                                                                     |
-|------------------|------------------------------|---------|-------------------------------------|-----------------------------------------------------------------------------------------------------------------|
+| ---------------- | ---------------------------- | ------- | ----------------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | Input            | `input`                      | `path`  | (required)                          | Path to the input image file                                                                                    |
 | Image Processing | `-w, --width`                | `int`   | `100`                               | Output width in braille characters (10-500)                                                                     |
 | Image Processing | `-t, --threshold`            | `int`   | `50`                                | Luminance cutoff for braille dots (0-255)                                                                       |
@@ -413,7 +421,7 @@ For detailed technical information, see the [Documentation Index][docs-index-lin
 
 ---
 
-## Python API
+## Python Library
 
 arTTY can be used directly as a Python library for more control over the conversion process. Import the `image_to_braille` function and pass various parameters to customize the output.
 
@@ -569,7 +577,7 @@ Contributions are welcome! Please review our [contributing guidelines][contribut
 ## Acknowledgements
 
 - [Pillow][pillow-link] — Primary image processing library
-- [click][click-link] — CLI framework
+- [Click][click-link] — CLI framework
 
 ---
 
@@ -579,21 +587,21 @@ Distributed under the MIT License. See [LICENSE][license-link] for more informat
 
 ---
 
-**Last updated:** 2026-04-18
+**Last updated:** 2026-05-12
 
 <!-- Badge Links -->
-[pypi-badge-badge]: https://img.shields.io/pypi/v/artty?style=plastic&color=black&logo=pypi&logoColor=white
-[pypi-badge-link]: https://pypi.org/project/artty/
-[python-badge-badge]: https://img.shields.io/pypi/pyversions/artty?logo=python&style=plastic&color=black&logoColor=white
+[python-badge-icon]: https://img.shields.io/pypi/pyversions/artty?logo=python&style=plastic&color=black&logoColor=white&label=Python
 [python-badge-link]: https://www.python.org/
-[license-badge-badge]: https://img.shields.io/badge/license-MIT-blue?style=plastic&logo=open-source-initiative&color=black&logoColor=white
+[license-badge-icon]: https://img.shields.io/badge/license-MIT-blue?style=plastic&logo=open-source-initiative&color=black&logoColor=white&label=License
 [license-badge-link]: https://opensource.org/licenses/MIT
-[codecov-badge-badge]: https://img.shields.io/codecov/c/github/divisionseven/artty?logo=codecov&style=plastic&color=black&logoColor=white
+[codecov-badge-icon]: https://img.shields.io/codecov/c/github/divisionseven/artty?logo=codecov&style=plastic&color=black&logoColor=white&label=Codecov
 [codecov-badge-link]: https://app.codecov.io/gh/divisionseven/artty
-[ci-badge-badge]: https://img.shields.io/github/actions/workflow/status/divisionseven/artty/ci.yml?branch=main&logo=github&style=plastic&color=black&logoColor=white
+[ci-badge-icon]: https://img.shields.io/github/actions/workflow/status/divisionseven/artty/ci.yml?branch=main&logo=github&style=plastic&color=black&logoColor=white&label=Build
 [ci-badge-link]: https://github.com/divisionseven/artty/actions/workflows/ci.yml
 
-<!-- Logo Assets -->
+[pypi-version-badge-icon]: https://img.shields.io/pypi/v/artty?style=plastic&color=black&logo=pypi&logoColor=white&label=Pypi%20Version
+[pypi-downloads-badge-icon]: https://img.shields.io/pypi/dm/artty?style=plastic&logo=pypi&logoColor=white&label=Downloads&color=black
+[pypi-badge-link]: https://pypi.org/project/artty/
 
 <!-- Documentation Links -->
 [docs-index-link]: docs/index.md

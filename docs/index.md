@@ -1,14 +1,15 @@
-# artty Documentation
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/divisionseven/artty/raw/main/docs/assets/brand/logo_white.svg">
+    <source media="(prefers-color-scheme: light)" srcset="https://github.com/divisionseven/artty/raw/main/docs/assets/brand/logo_black.svg">
+    <img src="https://github.com/divisionseven/artty/raw/main/docs/assets/brand/logo_color.png" alt="artty color logo" width="500">
+  </picture>
 
-<p align="center">
-  <a href="https://pypi.org/project/artty/"><img src="https://img.shields.io/pypi/pyversions/artty?style=plastic&bg=black&logoColor=white" alt="Python Version"></a>
-  <a href="https://github.com/divisionseven/artty/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/divisionseven/artty/ci.yml?style=plastic&bg=black&logoColor=white" alt="Build Status"></a>
-  <a href="https://pypi.org/project/artty/"><img src="https://img.shields.io/pypi/v/artty?style=plastic&bg=black&logoColor=white" alt="PyPI Version"></a>
-</p>
+# arTTY Documentation Index
 
-Welcome to the artty technical documentation. Here you'll find in-depth information about the conversion algorithm, complete API references, and practical usage examples.
+### Welcome to the arTTY technical documentation. Here you'll find in-depth information about the conversion algorithm, complete API references, and practical usage examples.
 
----
+</div>
 
 ## Documentation Sections
 
@@ -52,19 +53,21 @@ Practical usage examples from basic conversion to advanced techniques.
 - [GitHub Repository](https://github.com/divisionseven/artty)
 - [PyPI Package](https://pypi.org/project/artty/)
 - [Report Bugs](https://github.com/divisionseven/artty/issues)
-- [Request Features](https://github.com/divisionseven/artty/discussions)
+- [Join Discussions](https://github.com/divisionseven/artty/discussions)
 
 ---
 
-## Overview
+## Features Overview
 
-| Feature | Description |
-|---------|-------------|
-| **Unicode Braille** | Uses U+2800–U+28FF for 8 dots per character (4× detail vs traditional ASCII) |
-| **24-bit ANSI Color** | Embedded color codes sample only from lit pixels |
-| **Cross-Platform** | Works on macOS, Linux, and Windows with VT support |
-| **Configurable** | Width, threshold, contrast, sharpness, padding, color boost |
+| Feature                       | Description                                                                          |
+| ----------------------------- | ------------------------------------------------------------------------------------ |
+| ⚡️  **Unicode Braille Output** | Uses braille characters (U+2800–U+28FF) for efficient 2×4 pixel cell representation  |
+| 🎨  **24-bit ANSI Color**      | Embedded color codes sample only from lit pixels, preventing dark edge contamination |
+| 🖥️  **Cross-Platform**         | Works on macOS, Linux, and Windows with VT support                                   |
+| 📐  **Preserves Contrast**     | Advanced threshold and sharpness controls maintain image definition                  |
+| ⚙️  **Fully Configurable**     | Adjustable width, threshold, contrast, sharpness, and padding                        |
+| 🔧  **Python Library**         | Import `image_to_braille` directly in your own code                                  |
 
 ---
 
-> Last updated: 2026-04-11
+> Last updated: 2026-05-12
