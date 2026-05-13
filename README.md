@@ -599,8 +599,8 @@ Distributed under the MIT License. See [LICENSE][license-link] for more informat
 [ci-badge-icon]: https://img.shields.io/github/actions/workflow/status/divisionseven/artty/ci.yml?branch=main&logo=github&style=plastic&color=black&logoColor=white&label=Build
 [ci-badge-link]: https://github.com/divisionseven/artty/actions/workflows/ci.yml
 
-[pypi-version-badge-icon]: https://img.shields.io/pypi/v/artty?style=plastic&color=black&logo=pypi&logoColor=white&label=Pypi%20Version
-[pypi-downloads-badge-icon]: https://img.shields.io/pypi/dm/artty?style=plastic&logo=pypi&logoColor=white&label=Downloads&color=black
+[pypi-version-badge-icon]: https://img.shields.io/pypi/v/artty?style=plastic&color=black&logo=pypi&logoColor=white&label=PyPI%20Version
+[pypi-downloads-badge-icon]: https://img.shields.io/pepy/dt/artty?style=plastic&logo=pypi&logoColor=white&label=PyPI%20Downloads&color=black
 [pypi-badge-link]: https://pypi.org/project/artty/
 
 <!-- Documentation Links -->
