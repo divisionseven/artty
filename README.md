@@ -16,7 +16,7 @@
 [![PyPI - Downloads][pypi-downloads-badge-icon]][pypi-badge-link]
 
 <p>
-  <a href="docs/index.md">📖 Documentation Index</a> &nbsp;·&nbsp; <a href="https://github.com/divisionseven/artty/issues">🐛 Open an Issue</a> &nbsp;·&nbsp; <a href="https://github.com/divisionseven/artty/discussions">💬 Join the Conversation</a>
+  <a href="docs/index.md">Documentation Index</a> &nbsp;·&nbsp; <a href="https://github.com/divisionseven/artty/issues">Open an Issue</a> &nbsp;·&nbsp; <a href="https://github.com/divisionseven/artty/discussions">Join the Discussion</a>
 </p>
 
 </div>
